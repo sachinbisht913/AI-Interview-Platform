@@ -9,6 +9,11 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ResumeAnalysis from "./pages/ResumeAnalysis";
 import Resume from "./pages/Resume";
+import MockInterview from "./pages/MockInterview";
+import InterviewSession from "./pages/InterviewSession";
+import InterviewResult from "./pages/InterviewResult";
+
+
 function App() {
   return (
     <>
@@ -41,6 +46,13 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+<Route path="/mock-interview" element={<MockInterview />} />
+
+<Route path="/interview-session" element={<InterviewSession />} />
+
+<Route path="/interview-result" element={<InterviewResult />} />
+
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </div>

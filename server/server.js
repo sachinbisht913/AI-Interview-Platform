@@ -11,6 +11,7 @@ const verifyToken = require("./middleware/authMiddleware");
 //routes
 const authRoutes = require('./routes/authRoutes')
 const resumeRoutes = require("./routes/resumeRoutes");
+const interviewRoutes = require("./routes/interviewRoutes");
 
 // Middleware
 app.use(cors());
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use("/api/resume", resumeRoutes);
+app.use("/api/interview", interviewRoutes);
 
 
 // Test Route
