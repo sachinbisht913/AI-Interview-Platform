@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Navbar from "../components/layout/Navbar";
+
 import UploadArea from "../components/resume/UploadArea";
 import UploadButton from "../components/resume/UploadButton";
 
@@ -64,7 +64,7 @@ function Resume() {
 
         <div className="min-h-screen bg-slate-950">
 
-            <Navbar />
+            {/* <Navbar /> */}
 
             <div className="max-w-4xl mx-auto py-20 px-6">
 

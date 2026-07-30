@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { Toaster } from "react-hot-toast";
+import { SidebarProvider } from "./context/SidebarContext";
+
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
@@ -17,7 +19,9 @@ createRoot(document.getElementById('root')).render(
                     reverseOrder={false}
                 />
 
-                <App />
+<SidebarProvider>
+    <App />
+</SidebarProvider>
 
             </BrowserRouter>
         </Provider>

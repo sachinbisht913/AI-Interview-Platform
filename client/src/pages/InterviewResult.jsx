@@ -1,41 +1,107 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import ActionButtons from "../components/interview/ActionButtons";
+
+import OverallScore from "../components/interview/OverallScore";
+import QuestionFeedback from "../components/interview/QuestionFeedback";
+import EvaluationLoader from "../components/interview/EvaluationLoader";
+import StrengthCard from "../components/interview/StrengthCard";
+
+import WeaknessCard from "../components/interview/WeaknessCard";
+
+import LearningPath from "../components/interview/LearningPath";
+
+import { evaluateInterview } from "../api/interviewApi";
 
 function InterviewResult() {
+  const { state } = useLocation();
 
-    const navigate = useNavigate();
+  const interviewId = state?.interviewId;
 
-    return (
+  const [loading, setLoading] = useState(true);
 
-        <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center text-white">
+  const [results, setResults] = useState([]);
 
-            <h1 className="text-5xl font-bold">
+  const [strengths, setStrengths] = useState([]);
 
-                Interview Completed 🎉
+  const [weaknesses, setWeaknesses] = useState([]);
 
-            </h1>
+  const [topics, setTopics] = useState([]);
 
-            <p className="text-slate-400 mt-5">
+  useEffect(() => {
+    fetchEvaluation();
+  }, []);
 
-                AI evaluation will be added next.
+  const fetchEvaluation = async () => {
+    try {
+      const { data } = await evaluateInterview({
+        interviewId,
+      });
 
-            </p>
+      setResults(data.results);
 
-            <button
+      setStrengths(data.strengths);
 
-                onClick={() => navigate("/dashboard")}
+      setWeaknesses(data.weaknesses);
 
-                className="mt-10 bg-blue-600 px-8 py-4 rounded-xl"
+      setTopics(data.recommendedTopics);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-            >
+  if (loading) {
+    return <EvaluationLoader />;
+  }
 
-                Dashboard
+  const total = results.reduce(
 
-            </button>
+    (sum, item) => sum + Number(item.evaluation.score || 0),
 
+    0
+
+);
+
+const average = results.length
+    ? Math.round(total / results.length)
+    : 0;
+
+  return (
+    <div className="min-h-screen bg-slate-950 py-14">
+      <div className="max-w-6xl mx-auto px-6">
+        <OverallScore score={average} />
+
+        <div className="space-y-8 mt-12">
+          {results.map((item) => (
+            <QuestionFeedback key={item.id} item={item} />
+          ))}
         </div>
+      </div>
 
-    );
+      <div className="grid md:grid-cols-2 gap-8 mt-12">
 
+    <StrengthCard
+        strengths={strengths}
+    />
+
+    <WeaknessCard
+        weaknesses={weaknesses}
+    />
+
+</div>
+
+<div className="mt-10">
+
+    <LearningPath
+        topics={topics}
+    />
+    <ActionButtons />
+
+</div>
+    </div>
+  );
 }
 
 export default InterviewResult;

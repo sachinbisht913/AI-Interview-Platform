@@ -1,5 +1,6 @@
-import Sidebar from "../components/Dashboard/Sidebar";
-import Navbar from "../components/Dashboard/Navbar";
+// import Sidebar from "../components/Dashboard/Sidebar";
+// import Navbar from "../components/Dashboard/Navbar";
+// import TopNavbar from "../components/layout/TopNavbar";
 import StatCard from "../components/Dashboard/StatCard";
 import RecentInterviews from "../components/Dashboard/RecentInterviews";
 import PerformanceOverview from "../components/Dashboard/PerformanceOverview";
@@ -7,10 +8,10 @@ import PerformanceOverview from "../components/Dashboard/PerformanceOverview";
 function Dashboard() {
   return (
     <div className="flex min-h-screen bg-slate-900">
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       <div className="flex-1 flex flex-col">
-        <Navbar />
+        {/* <TopNavbar/> */}
 
         <main className="p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">

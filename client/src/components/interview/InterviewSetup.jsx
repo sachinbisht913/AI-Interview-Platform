@@ -13,7 +13,7 @@ function InterviewSetup() {
 
     return (
 
-        <div className="max-w-6xl mx-auto py-16 px-6">
+        <div className="max-w-6xl mx-auto  px-6">
             {/* <Navbar /> */}
 
             <h1 className="text-5xl font-bold text-white text-center">

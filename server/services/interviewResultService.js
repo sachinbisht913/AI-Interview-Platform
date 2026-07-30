@@ -1,57 +1,98 @@
 const {
 
-    getAnswers,
+  getAnswers,
+
+  updateInterviewResult,
 
 } = require("../models/interviewResultModel");
 
-const {
-
-    evaluateAnswer,
-
-} = require("./interviewEvaluationService");
+const { evaluateAnswer } = require("./interviewEvaluationService");
 
 const evaluateInterviewService = async (req) => {
+  const { interviewId } = req.body;
 
-    const { interviewId } = req.body;
+  const answers = await getAnswers(interviewId);
 
-    const answers = await getAnswers(interviewId);
+  const results = [];
 
-    const results = [];
+  for (const answer of answers) {
+    const ai = await evaluateAnswer(
+      answer.question,
 
-    for (const answer of answers) {
+      answer.expected_answer,
 
-        const ai = await evaluateAnswer(
+      answer.user_answer
+    );
 
-            answer.question,
+    const evaluation = JSON.parse(ai);
 
-            answer.expected_answer,
+    results.push({
+      ...answer,
 
-            answer.user_answer
+      evaluation,
+    });
+  }
 
-        );
+  const strengths = [];
 
-        results.push({
+  const weaknesses = [];
 
-            ...answer,
+  const recommendedTopics = [];
 
-            evaluation: JSON.parse(ai),
+  results.forEach((item) => {
+    strengths.push(...item.evaluation.strengths);
 
-        });
+    weaknesses.push(...item.evaluation.weaknesses);
 
-    }
+    recommendedTopics.push(...item.evaluation.recommendedTopics);
+  });
 
-    return {
+  const totalScore = results.reduce(
 
-        success:true,
+    (sum, item) => sum + Number(item.evaluation.score),
 
-        results,
+    0
 
-    };
+);
+
+const overallScore = Math.round(
+
+    totalScore / results.length
+
+);
+
+const overallFeedback =
+
+    `Overall interview score: ${overallScore}/10`;
+    await updateInterviewResult(
+
+      interviewId,
+  
+      overallScore,
+  
+      overallFeedback
+  
+  );
+
+  return {
+
+    success: true,
+
+    overallScore,
+
+    overallFeedback,
+
+    results,
+
+    strengths,
+
+    weaknesses,
+
+    recommendedTopics
 
 };
+};
 
-module.exports={
-
-evaluateInterviewService
-
+module.exports = {
+  evaluateInterviewService,
 };

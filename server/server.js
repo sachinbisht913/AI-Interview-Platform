@@ -12,7 +12,8 @@ const verifyToken = require("./middleware/authMiddleware");
 const authRoutes = require('./routes/authRoutes')
 const resumeRoutes = require("./routes/resumeRoutes");
 const interviewRoutes = require("./routes/interviewRoutes");
-
+const analyticsRoutes = require("./routes/analyticsRoutes");
+const historyRoutes = require("./routes/historyRoutes");
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -20,6 +21,8 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use("/api/resume", resumeRoutes);
 app.use("/api/interview", interviewRoutes);
+app.use("/api/analytics", analyticsRoutes);
+app.use("/api/history", historyRoutes);
 
 
 // Test Route

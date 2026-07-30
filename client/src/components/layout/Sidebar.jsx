@@ -1,88 +1,129 @@
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/authSlice";
+import { useNavigate } from "react-router-dom";
+
 import {
+
     LayoutDashboard,
+
     FileText,
-    BrainCircuit,
+
+    Mic,
+
     Code2,
+
     BarChart3,
-    User
+
+    History,
+
+    FolderOpen,
+
+    User,
+
+    LogOut,
+
 } from "lucide-react";
 
-import { NavLink } from "react-router-dom";
-
-const menuItems = [
-    {
-        title: "Dashboard",
-        icon: LayoutDashboard,
-        path: "/dashboard",
-    },
-    {
-        title: "Resume Analyzer",
-        icon: FileText,
-        path: "/resume",
-    },
-    {
-        title: "Mock Interview",
-        icon: BrainCircuit,
-        path: "/mock-interview",
-    },
-    {
-        title: "Coding Round",
-        icon: Code2,
-        path: "/coding",
-    },
-    {
-        title: "Analytics",
-        icon: BarChart3,
-        path: "/analytics",
-    },
-    {
-        title: "Profile",
-        icon: User,
-        path: "/profile",
-    },
-];
-
+import SidebarItem from "../layout/SidebarItem";
+import Logo from "../layout/Logo";
+import { useSidebar } from "../../context/SidebarContext";
 function Sidebar() {
+    const { collapsed } = useSidebar();
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+
+        dispatch(logout());
+
+        navigate("/login");
+
+    };
 
     return (
 
-        <aside className="w-72 bg-slate-900 border-r border-slate-800 p-6">
+        <aside  className={`py-8
+        fixed left-0 top-0 h-screen
+        bg-slate-900 border-r border-slate-800
+        flex flex-col justify-between
+        transition-all duration-300
+        ${collapsed ? "w-20" : "w-72"}
+    `}>
 
-            <h2 className="text-white text-xl font-bold mb-8">
+            <div>
 
-                Navigation
+                <Logo />
 
-            </h2>
+                <div className="mt-12 space-y-3">
 
-            <div className="space-y-3">
+                    <SidebarItem
+                        to="/dashboard"
+                        icon={LayoutDashboard}
+                        title="Dashboard"
+                    />
 
-                {menuItems.map((item) => {
+                    <SidebarItem
+                        to="/resume"
+                        icon={FileText}
+                        title="Resume Analyzer"
+                    />
 
-                    const Icon = item.icon;
+                    <SidebarItem
+                        to="/mock-interview"
+                        icon={Mic}
+                        title="Mock Interview"
+                    />
 
-                    return (
+                    <SidebarItem
+                        to="/coding-round"
+                        icon={Code2}
+                        title="Coding Round"
+                    />
 
-                        <NavLink
-                            key={item.path}
-                            to={item.path}
-                            className={({ isActive }) =>
-                                `flex items-center gap-3 px-5 py-4 rounded-xl transition ${
-                                    isActive
-                                        ? "bg-blue-600 text-white"
-                                        : "text-slate-300 hover:bg-slate-800"
-                                }`
-                            }
-                        >
+                    <SidebarItem
+                        to="/analytics"
+                        icon={BarChart3}
+                        title="Analytics"
+                    />
 
-                            <Icon size={20} />
+                    <SidebarItem
+                        to="/interview-history"
+                        icon={History}
+                        title="Interview History"
+                    />
 
-                            {item.title}
+                    <SidebarItem
+                        to="/resume-history"
+                        icon={FolderOpen}
+                        title="Resume History"
+                    />
 
-                        </NavLink>
+                </div>
 
-                    );
+            </div>
 
-                })}
+            <div className="space-y-4">
+
+                <SidebarItem
+                    to="/profile"
+                    icon={User}
+                    title="Profile"
+                />
+
+<button
+    onClick={handleLogout}
+    className={`w-full flex items-center ${
+        collapsed ? "justify-center" : "gap-4"
+    } px-4 py-3 rounded-2xl text-red-400 hover:bg-red-500 hover:text-white transition`}
+>
+
+    <LogOut size={20} />
+
+    {!collapsed && "Logout"}
+
+</button>
 
             </div>
 

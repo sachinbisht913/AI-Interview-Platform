@@ -1,94 +1,136 @@
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
+
 import {
-  FaTachometerAlt,
-  FaFileAlt,
-  FaMicrophone,
-  FaCode,
-  FaChartBar,
-  FaUser,
-  FaSignOutAlt,
-} from "react-icons/fa";
+
+    LayoutDashboard,
+
+    FileText,
+
+    Mic,
+
+    Code2,
+
+    BarChart3,
+
+    History,
+
+    FolderOpen,
+
+    User,
+
+    LogOut,
+
+} from "lucide-react";
+
+import SidebarItem from "../layout/SidebarItem";
+import Logo from "../layout/Logo";
 
 function Sidebar() {
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-  const handleLogout =()=>{
-    dispatch(logout());
-    navigate('/login');
-  }
-  return (
-    <aside className="w-64 min-h-screen bg-slate-800 text-white p-6">
+    const navigate = useNavigate();
 
-      <h1 className="text-2xl font-bold text-blue-400 mb-10">
-        AI Interview
-      </h1>
+    const handleLogout = () => {
 
-      <nav className="flex flex-col gap-2">
+        dispatch(logout());
 
-        <Link
-        to="/dashboard"
-          className="flex items-center gap-3 hover:bg-slate-700 px-4 py-3 rounded-lg transition"
-        >
-          <FaTachometerAlt />
-          <span>Dashboard</span>
-        </Link>
+        navigate("/login");
 
-        <Link
-          to="/resume"
-          className="flex items-center gap-3 hover:bg-slate-700 px-4 py-3 rounded-lg transition"
-        >
-          <FaFileAlt />
-          <span>Resume Analyzer</span>
-        </Link>
+    };
 
-        <Link
-          to="/mock-interview"
-          className="flex items-center gap-3 hover:bg-slate-700 px-4 py-3 rounded-lg transition"
-        >
-          <FaMicrophone />
-          <span>Mock Interview</span>
-        </Link>
+    return (
 
-        <Link
-          to="/coding-round"
-          className="flex items-center gap-3 hover:bg-slate-700 px-4 py-3 rounded-lg transition"
-        >
-          <FaCode />
-          <span>Coding Round</span>
-        </Link>
+        <aside  className={`
+        fixed left-0 top-0 h-screen
+        bg-slate-900 border-r border-slate-800
+        flex flex-col justify-between
+        transition-all duration-300
+        ${collapsed ? "w-20" : "w-72"}
+    `}>
 
-        <Link
-          to="/analytics"
-          className="flex items-center gap-3 hover:bg-slate-700 px-4 py-3 rounded-lg transition"
-        >
-          <FaChartBar />
-          <span>Analytics</span>
-        </Link>
+            <div>
 
-        <Link
-          to="/profile"
-          className="flex items-center gap-3 hover:bg-slate-700 px-4 py-3 rounded-lg transition"
-        >
-          <FaUser />
-          <span>Profile</span>
-        </Link>
+                <Logo />
 
-        <button onClick={handleLogout}
-          className="mt-8 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 py-3 rounded-lg transition"
-        >
-          <FaSignOutAlt />
-          <span>Logout</span>
-        </button>
+                <div className="mt-12 space-y-3">
 
-      </nav>
+                    <SidebarItem
+                        to="/dashboard"
+                        icon={LayoutDashboard}
+                        title="Dashboard"
+                    />
 
-    </aside>
-  );
+                    <SidebarItem
+                        to="/resume"
+                        icon={FileText}
+                        title="Resume Analyzer"
+                    />
+
+                    <SidebarItem
+                        to="/mock-interview"
+                        icon={Mic}
+                        title="Mock Interview"
+                    />
+
+                    <SidebarItem
+                        to="/coding-round"
+                        icon={Code2}
+                        title="Coding Round"
+                    />
+
+                    <SidebarItem
+                        to="/analytics"
+                        icon={BarChart3}
+                        title="Analytics"
+                    />
+
+                    <SidebarItem
+                        to="/interview-history"
+                        icon={History}
+                        title="Interview History"
+                    />
+
+                    <SidebarItem
+                        to="/resume-history"
+                        icon={FolderOpen}
+                        title="Resume History"
+                    />
+
+                </div>
+
+            </div>
+
+            <div className="space-y-4">
+
+                <SidebarItem
+                    to="/profile"
+                    icon={User}
+                    title="Profile"
+                />
+
+                <button
+
+                    onClick={handleLogout}
+
+                    className="w-full flex items-center gap-4 px-4 py-3 rounded-2xl text-red-400 hover:bg-red-500 hover:text-white transition"
+
+                >
+
+                    <LogOut size={20} />
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </aside>
+
+    );
+
 }
 
 export default Sidebar;
