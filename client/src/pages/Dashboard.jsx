@@ -1,43 +1,40 @@
-// import Sidebar from "../components/Dashboard/Sidebar";
-// import Navbar from "../components/Dashboard/Navbar";
-// import TopNavbar from "../components/layout/TopNavbar";
-import StatCard from "../components/Dashboard/StatCard";
-import RecentInterviews from "../components/Dashboard/RecentInterviews";
-import PerformanceOverview from "../components/Dashboard/PerformanceOverview";
+// File: src/pages/Dashboard.jsx
+
+
+import WelcomeCard from "../components/Dashboard/WelcomeCard";
+import StatsGrid from "../components/dashboard/StatsGrid";
+import PerformanceChart from "../components/Dashboard/PerformanceChart";
+import RecentInterviews from "../components/dashboard/RecentInterviews";
+import RecommendationCard from "../components/Dashboard/RecommendationCard";
+import QuickActions from "../components/Dashboard/QuickActions";
 
 function Dashboard() {
-  return (
-    <div className="flex min-h-screen bg-slate-900">
-      {/* <Sidebar /> */}
+    return (
+        <div className="space-y-8">
+            {/* Welcome Section */}
+            <WelcomeCard />
 
-      <div className="flex-1 flex flex-col">
-        {/* <TopNavbar/> */}
+            {/* Statistics */}
+            <StatsGrid />
 
-        <main className="p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            <StatCard
-              title="Total Interviews"
-              value="18"
-              color="text-blue-400"
-            />
+            {/* Performance Chart */}
+            <PerformanceChart />
 
-            <StatCard title="Completed" value="15" color="text-green-400" />
+            {/* Bottom Section */}
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                <div className="xl:col-span-2">
+                    <RecentInterviews />
+                </div>
 
-            <StatCard title="ATS Score" value="85%" color="text-yellow-400" />
+                <div>
+                    <RecommendationCard />
+                </div>
+            </div>
 
-            <StatCard
-              title="Coding Score"
-              value="92%"
-              color="text-purple-400"
-            />
-            <RecentInterviews />
-
-            <PerformanceOverview />
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+            {/* Quick Actions */}
+            <QuickActions />
+        </div>
+    );
 }
 
 export default Dashboard;
