@@ -1,3 +1,5 @@
+// File: src/components/resume/QuestionCard.jsx
+
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -12,46 +14,92 @@ function QuestionCard({ question }) {
         <GlassCard className="overflow-hidden">
 
             <button
+                type="button"
                 onClick={() => setOpen(!open)}
                 className="
-                    w-full
                     flex
-                    justify-between
+                    w-full
                     items-center
-                    p-5
+                    justify-between
+                    gap-4
+                    p-4
                     text-left
+
+                    sm:p-5
                 "
             >
 
-                <span className="text-white font-medium">
+                <span
+                    className="
+                        resume-question-text
+                        min-w-0
+                        break-words
+                        text-sm
+                        font-medium
+                        leading-6
+                        text-white
 
+                        sm:text-base
+                        sm:leading-7
+                    "
+                >
                     {question}
-
                 </span>
+
 
                 <motion.div
                     animate={{
                         rotate: open ? 180 : 0,
                     }}
+                    className="shrink-0"
                 >
 
-                    <ChevronDown />
+                    <ChevronDown
+                        size={20}
+                        className="
+                            resume-question-icon
+                            text-slate-400
+
+                            sm:h-6
+                            sm:w-6
+                        "
+                    />
 
                 </motion.div>
 
             </button>
 
+
             {open && (
 
                 <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0 }}
-                    className="px-5 pb-5 text-slate-400"
+                    initial={{
+                        height: 0,
+                        opacity: 0,
+                    }}
+                    animate={{
+                        height: "auto",
+                        opacity: 1,
+                    }}
+                    exit={{
+                        height: 0,
+                    }}
+                    className="
+                        resume-question-answer
+                        px-4
+                        pb-4
+                        text-sm
+                        leading-6
+                        text-slate-400
+
+                        sm:px-5
+                        sm:pb-5
+                        sm:text-base
+                        sm:leading-7
+                    "
                 >
-
-                    Think about how you would answer this question during your interview.
-
+                    Think about how you would answer this question during
+                    your interview.
                 </motion.div>
 
             )}
@@ -59,7 +107,6 @@ function QuestionCard({ question }) {
         </GlassCard>
 
     );
-
 }
 
 export default QuestionCard;

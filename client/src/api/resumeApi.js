@@ -1,18 +1,7 @@
-import axios from "axios";
+// File: src/api/resumeApi.js
 
-const API = "http://localhost:5000/api/resume";
+import API from "./axios";
 
-export const uploadResume = async (formData, token) => {
-
-    return axios.post(
-        `${API}/upload`,
-        formData,
-        {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "multipart/form-data",
-            },
-        }
-    );
-
+export const uploadResume = (formData) => {
+    return API.post("/resume/upload", formData);
 };

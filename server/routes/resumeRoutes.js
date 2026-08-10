@@ -3,10 +3,11 @@ const router = express.Router();
 
 const upload = require("../middleware/uploadMiddleware");
 const { uploadResume } = require("../controllers/resumeController");
+const verifyToken = require("../middleware/authMiddleware");
 
-// Protected route
 router.post(
     "/upload",
+    verifyToken,
     upload.single("resume"),
     uploadResume
 );

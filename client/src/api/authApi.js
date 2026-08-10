@@ -1,9 +1,38 @@
 import API from "./axios";
 
-export const signupUser =(userData)=>{
-    return API.post("/auth/signup", userData);
+// Login
+export const loginUser = (data) => {
+    return API.post("/auth/login", data);
 };
 
- export const loginUser = (userData)=>{
-    return API.post("/auth/login", userData)
- }
+// Signup
+export const signupUser = (data) => {
+    return API.post("/auth/signup", data);
+};
+
+// Forgot password
+export const forgotPassword = (email) => {
+    return API.post("/auth/forgot-password", {
+        email,
+    });
+};
+
+// Reset password
+export const resetPassword = (token, password) => {
+    return API.post(`/auth/reset-password/${token}`, {
+        password,
+    });
+};
+
+
+export const changePassword = (data) => {
+    return API.put("/auth/change-password", data);
+};
+
+export const deleteAccount = (password) => {
+    return API.delete("/auth/delete-account", {
+        data: {
+            password,
+        },
+    });
+};

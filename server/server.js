@@ -14,6 +14,11 @@ const resumeRoutes = require("./routes/resumeRoutes");
 const interviewRoutes = require("./routes/interviewRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const historyRoutes = require("./routes/historyRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+const resumeHistoryRoutes = require("./routes/resumeHistoryRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -23,7 +28,10 @@ app.use("/api/resume", resumeRoutes);
 app.use("/api/interview", interviewRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/history", historyRoutes);
-
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/resume-history", resumeHistoryRoutes);
+app.use("/api/profile", profileRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 // Test Route
 app.get("/", (req, res) => {

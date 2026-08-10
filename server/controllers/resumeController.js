@@ -11,9 +11,8 @@ const uploadResume = async (req, res) => {
             });
         }
 
-        // Temporary
-        const userId = 1;
-
+        
+        const userId = req.user.id;
         const resume = await uploadResumeService(
             req.file,
             userId

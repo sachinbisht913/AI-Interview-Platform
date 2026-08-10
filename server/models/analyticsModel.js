@@ -90,12 +90,17 @@ const getRecentInterviews = async (userId) => {
         `
         SELECT
 
-            domain,
+        id,
+    
+        domain,
+    
+        difficulty,
+    
+        overall_score,
+    
+        created_at
 
-            overall_score,
-
-            created_at
-
+        
         FROM interviews
 
         WHERE user_id=?

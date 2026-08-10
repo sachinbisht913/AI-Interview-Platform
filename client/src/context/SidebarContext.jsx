@@ -1,13 +1,28 @@
+// File: src/context/SidebarContext.jsx
+
 import { createContext, useContext, useState } from "react";
 
 const SidebarContext = createContext();
 
 export function SidebarProvider({ children }) {
-
     const [collapsed, setCollapsed] = useState(false);
 
+    const [mobileOpen, setMobileOpen] = useState(false);
+
     const toggleSidebar = () => {
-        setCollapsed(prev => !prev);
+        setCollapsed((prev) => !prev);
+    };
+
+    const openMobileSidebar = () => {
+        setMobileOpen(true);
+    };
+
+    const closeMobileSidebar = () => {
+        setMobileOpen(false);
+    };
+
+    const toggleMobileSidebar = () => {
+        setMobileOpen((prev) => !prev);
     };
 
     return (
@@ -15,6 +30,11 @@ export function SidebarProvider({ children }) {
             value={{
                 collapsed,
                 toggleSidebar,
+
+                mobileOpen,
+                openMobileSidebar,
+                closeMobileSidebar,
+                toggleMobileSidebar,
             }}
         >
             {children}

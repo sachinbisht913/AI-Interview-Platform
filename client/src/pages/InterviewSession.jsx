@@ -1,185 +1,667 @@
+// File: src/pages/InterviewSession.jsx
+
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { ArrowRight, Clock, LogOut } from "lucide-react";
+
 import { submitAnswer } from "../api/interviewApi";
 
 function InterviewSession() {
-  const { state } = useLocation();
-  const navigate = useNavigate();
 
-  const interview = state?.interview;
+    const { state } = useLocation();
+    const navigate = useNavigate();
 
-  const interviewId = state?.interviewId;
+    const interview = state?.interview;
+    const interviewId = state?.interviewId;
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [answer, setAnswer] = useState("");
+    const [submitting, setSubmitting] = useState(false);
 
-  const [answer, setAnswer] = useState("");
 
-  if (!interview) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <button
-          onClick={() => navigate("/mock-interview")}
-          className="bg-blue-600 px-6 py-3 rounded-xl text-white"
-        >
-          Start Interview
-        </button>
-      </div>
-    );
-  }
+    /*
+    ========================================
+    Interview Data
+    ========================================
+    */
 
-  const questions = interview.questions;
+    const questions = interview?.questions || [];
 
-  const question = questions[currentQuestion];
+    const question = questions[currentQuestion];
 
-  const handleNext = async () => {
-    try {
-      await submitAnswer({
-        interviewId,
 
-        questionNo: currentQuestion + 1,
+    /*
+    ========================================
+    Timer
+    ========================================
+    */
 
-        topic: question.topic,
+    const TOTAL_TIME = questions.length * 120;
 
-        question: question.question,
+    const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
 
-        expectedAnswer: question.expectedAnswer,
 
-        userAnswer: answer,
-      });
+    /*
+    ========================================
+    Finish Interview
+    ========================================
+    */
 
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion((prev) => prev + 1);
+    const finishInterview = useCallback(async () => {
 
-        setAnswer("");
-      } else {
+        if (submitting || !question) return;
+
+        setSubmitting(true);
+
+        try {
+
+            if (answer.trim()) {
+
+                await submitAnswer({
+
+                    interviewId,
+
+                    questionNo: currentQuestion + 1,
+
+                    topic: question.topic,
+
+                    question: question.question,
+
+                    expectedAnswer: question.expectedAnswer,
+
+                    userAnswer: answer,
+
+                });
+
+            }
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
         navigate("/interview-result", {
-          state: {
-            interviewId,
-          },
+
+            state: {
+                interviewId,
+            },
+
         });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      {/* Header */}
+    }, [
+        submitting,
+        answer,
+        interviewId,
+        currentQuestion,
+        question,
+        navigate,
+    ]);
 
-      <div className="border-b border-slate-800 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
-          <h1 className="text-3xl font-bold">AI Mock Interview</h1>
 
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-yellow-400">
-              <Clock size={20} />
+    /*
+    ========================================
+    Countdown Timer
+    ========================================
+    */
 
-              <span>15:00</span>
+    useEffect(() => {
+
+        if (!interview || submitting || timeLeft <= 0) {
+            return;
+        }
+
+        const interval = setInterval(() => {
+
+            setTimeLeft((prev) => {
+
+                if (prev <= 1) {
+
+                    clearInterval(interval);
+
+                    return 0;
+
+                }
+
+                return prev - 1;
+
+            });
+
+        }, 1000);
+
+        return () => clearInterval(interval);
+
+    }, [
+        interview,
+        submitting,
+        timeLeft,
+    ]);
+
+
+    /*
+    ========================================
+    Auto Submit
+    ========================================
+    */
+
+    useEffect(() => {
+
+        if (
+            interview &&
+            timeLeft <= 0 &&
+            !submitting
+        ) {
+
+            finishInterview();
+
+        }
+
+    }, [
+        interview,
+        timeLeft,
+        finishInterview,
+        submitting,
+    ]);
+
+
+    /*
+    ========================================
+    Next Question
+    ========================================
+    */
+
+    const handleNext = async () => {
+
+        if (submitting || !question) return;
+
+        try {
+
+            setSubmitting(true);
+
+            await submitAnswer({
+
+                interviewId,
+
+                questionNo: currentQuestion + 1,
+
+                topic: question.topic,
+
+                question: question.question,
+
+                expectedAnswer: question.expectedAnswer,
+
+                userAnswer: answer,
+
+            });
+
+
+            if (currentQuestion < questions.length - 1) {
+
+                setCurrentQuestion((prev) => prev + 1);
+
+                setAnswer("");
+
+                setSubmitting(false);
+
+            } else {
+
+                navigate("/interview-result", {
+
+                    state: {
+                        interviewId,
+                    },
+
+                });
+
+            }
+
+        } catch (error) {
+
+            console.log(error);
+
+            setSubmitting(false);
+
+        }
+
+    };
+
+
+    /*
+    ========================================
+    No Interview
+    ========================================
+    */
+
+    if (!interview || !question) {
+
+        return (
+
+            <div
+                className="
+                    interview-session-page
+                    flex
+                    min-h-screen
+                    items-center
+                    justify-center
+                    bg-slate-950
+                    px-4
+                "
+            >
+
+                <button
+                    type="button"
+                    onClick={() => navigate("/mock-interview")}
+                    className="
+                        rounded-xl
+                        bg-blue-600
+                        px-6
+                        py-3
+                        text-sm
+                        font-semibold
+                        text-white
+                        transition
+                        hover:bg-blue-700
+
+                        sm:text-base
+                    "
+                >
+                    Start Interview
+                </button>
+
             </div>
 
-            <button
-              onClick={() => navigate("/dashboard")}
-              className="flex items-center gap-2 bg-red-600 hover:bg-red-700 px-5 py-2 rounded-xl"
+        );
+
+    }
+
+
+    /*
+    ========================================
+    Time Formatting
+    ========================================
+    */
+
+    const minutes = String(
+        Math.floor(timeLeft / 60)
+    ).padStart(2, "0");
+
+    const seconds = String(
+        timeLeft % 60
+    ).padStart(2, "0");
+
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+
+    return (
+
+        <div className="interview-session-page min-h-screen bg-slate-950">
+
+            {/* ========================================
+                Header
+            ======================================== */}
+
+            <header
+                className="
+                    interview-session-header
+                    border-b
+                    border-slate-800
+                    bg-slate-900
+                "
             >
-              <LogOut size={18} />
-              Exit
-            </button>
-          </div>
+
+                <div
+                    className="
+                        mx-auto
+                        flex
+                        max-w-7xl
+                        flex-col
+                        gap-4
+                        px-4
+                        py-4
+
+                        sm:px-6
+                        sm:py-5
+
+                        md:flex-row
+                        md:items-center
+                        md:justify-between
+                    "
+                >
+
+                    {/* Title */}
+
+                    <h1
+                        className="
+                            interview-session-title
+                            text-xl
+                            font-bold
+
+                            sm:text-2xl
+
+                            md:text-3xl
+                        "
+                    >
+                        AI Mock Interview
+                    </h1>
+
+
+                    {/* Header Controls */}
+
+                    <div
+                        className="
+                            flex
+                            items-center
+                            justify-between
+                            gap-4
+
+                            sm:justify-end
+                        "
+                    >
+
+                        {/* Timer */}
+
+                        <div
+                            className={`
+                                interview-timer
+                                flex
+                                items-center
+                                gap-2
+                                rounded-xl
+                                border
+                                border-slate-800
+                                bg-slate-950
+                                px-3
+                                py-2
+                                font-semibold
+
+                                ${
+                                    timeLeft <= 60
+                                        ? "text-red-400 animate-pulse"
+                                        : timeLeft <= 300
+                                        ? "text-yellow-400"
+                                        : "text-emerald-400"
+                                }
+                            `}
+                        >
+
+                            <Clock size={18} />
+
+                            <span className="text-sm sm:text-base">
+                                {minutes}:{seconds}
+                            </span>
+
+                        </div>
+
+
+                        {/* Exit */}
+
+                        <button
+                            type="button"
+                            onClick={() => navigate("/dashboard")}
+                            className="
+                                flex
+                                items-center
+                                gap-2
+                                rounded-xl
+                                border
+                                border-red-500/40
+                                px-3
+                                py-2
+                                text-sm
+                                font-medium
+                                text-red-400
+                                transition
+                                hover:bg-red-500
+                                hover:text-white
+
+                                sm:px-5
+                            "
+                        >
+
+                            <LogOut size={17} />
+
+                            <span>
+                                Exit
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            {/* ========================================
+                Body
+            ======================================== */}
+
+            <main
+                className="
+                    mx-auto
+                    w-full
+                    max-w-5xl
+                    px-4
+                    py-8
+
+                    sm:px-6
+                    sm:py-10
+
+                    lg:py-14
+                "
+            >
+
+                {/* ========================================
+                    Progress
+                ======================================== */}
+
+                <div className="mb-8 sm:mb-10">
+
+                    <div
+                        className="
+                            mb-3
+                            flex
+                            items-center
+                            justify-between
+                            gap-4
+                            text-sm
+
+                            sm:text-base
+                        "
+                    >
+
+                        <span className="interview-progress-text">
+                            Question {currentQuestion + 1} /{" "}
+                            {questions.length}
+                        </span>
+
+                        <span className="interview-progress-percent font-medium">
+                            {Math.round(progress)}%
+                        </span>
+
+                    </div>
+
+
+                    <div className="interview-progress-track h-2 w-full overflow-hidden rounded-full">
+
+                        <div
+                            className="
+                                h-full
+                                rounded-full
+                                bg-blue-500
+                                transition-all
+                                duration-500
+                            "
+                            style={{
+                                width: `${progress}%`,
+                            }}
+                        />
+
+                    </div>
+
+                </div>
+
+
+                {/* ========================================
+                    Question
+                ======================================== */}
+
+                <section
+                    className="
+                        interview-question-card
+                        rounded-3xl
+                        border
+                        border-slate-800
+                        bg-slate-900
+                        p-5
+                        shadow-xl
+
+                        sm:p-7
+
+                        lg:p-10
+                    "
+                >
+
+                    <p
+                        className="
+                            mb-4
+                            text-xs
+                            font-medium
+                            uppercase
+                            tracking-wide
+                            text-blue-400
+
+                            sm:text-sm
+                        "
+                    >
+                        {question.topic}
+                    </p>
+
+
+                    <h2
+                        className="
+                            interview-question-text
+                            text-2xl
+                            font-bold
+                            leading-relaxed
+
+                            sm:text-3xl
+
+                            lg:text-4xl
+                        "
+                    >
+                        {question.question}
+                    </h2>
+
+                </section>
+
+
+                {/* ========================================
+                    Answer
+                ======================================== */}
+
+                <div className="mt-7 sm:mt-10">
+
+                    <textarea
+                        rows={8}
+                        value={answer}
+                        onChange={(e) => setAnswer(e.target.value)}
+                        placeholder="Write your answer here..."
+                        className="
+                            interview-answer
+                            min-h-[220px]
+                            w-full
+                            resize-none
+                            rounded-3xl
+                            border
+                            border-slate-700
+                            bg-slate-900
+                            p-5
+                            text-sm
+                            leading-7
+                            outline-none
+                            transition
+                            placeholder:text-slate-600
+                            focus:border-blue-500
+                            focus:ring-2
+                            focus:ring-blue-500/20
+
+                            sm:p-6
+                            sm:text-base
+                        "
+                    />
+
+
+                    <div className="mt-2 flex justify-end">
+
+                        <span className="interview-character-count text-xs sm:text-sm">
+                            {answer.length} characters
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                {/* ========================================
+                    Next Button
+                ======================================== */}
+
+                <div className="mt-6 flex justify-end sm:mt-8">
+
+                    <button
+                        type="button"
+                        onClick={handleNext}
+                        disabled={!answer.trim() || submitting}
+                        className={`
+                            flex
+                            w-full
+                            items-center
+                            justify-center
+                            gap-3
+                            rounded-2xl
+                            px-6
+                            py-4
+                            text-sm
+                            font-semibold
+                            transition-all
+
+                            sm:w-auto
+                            sm:px-8
+                            sm:text-base
+
+                            ${
+                                answer.trim() && !submitting
+                                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                                    : "cursor-not-allowed bg-slate-700 text-slate-400"
+                            }
+                        `}
+                    >
+
+                        {submitting
+                            ? "Submitting..."
+                            : currentQuestion === questions.length - 1
+                            ? "Finish Interview"
+                            : "Next Question"
+                        }
+
+                        {!submitting && (
+                            <ArrowRight size={18} />
+                        )}
+
+                    </button>
+
+                </div>
+
+            </main>
+
         </div>
-      </div>
 
-      {/* Body */}
+    );
 
-      <div className="max-w-5xl mx-auto py-14 px-6">
-        {/* Progress */}
-
-        <div className="mb-10">
-          <div className="flex justify-between mb-3">
-            <span>
-              Question {currentQuestion + 1} / {questions.length}
-            </span>
-
-            <span>
-              {Math.round(((currentQuestion + 1) / questions.length) * 100)}%
-            </span>
-          </div>
-
-          <div className="w-full h-3 bg-slate-800 rounded-full">
-            <div
-              className="h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600"
-              style={{
-                width: `${((currentQuestion + 1) / questions.length) * 100}%`,
-              }}
-            />
-          </div>
-        </div>
-
-        {/* Question */}
-
-        <div className="bg-slate-900 rounded-3xl border border-slate-800 p-10">
-          <p className="text-blue-400 text-lg mb-4">{question.topic}</p>
-
-          <h2 className="text-3xl font-bold leading-relaxed">
-            {question.question}
-          </h2>
-        </div>
-
-        {/* Answer */}
-
-        <div className="mt-10">
-          <textarea
-            rows={8}
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            placeholder="Write your answer here..."
-            className="w-full bg-slate-900 border border-slate-700 rounded-2xl p-6 outline-none resize-none"
-          />
-          <div className="flex justify-end mt-2">
-            <span className="text-slate-400">{answer.length} characters</span>
-          </div>
-        </div>
-
-        {/* Next */}
-
-        <div className="mt-8 flex justify-end">
-          <button
-            onClick={handleNext}
-            disabled={!answer.trim()}
-            className={`
-
-flex
-items-center
-gap-3
-
-px-8
-py-4
-
-rounded-2xl
-
-font-semibold
-
-transition-all
-
-${
-  answer.trim()
-    ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105"
-    : "bg-slate-700 cursor-not-allowed"
-}
-
-`}
-          >
-            {currentQuestion === questions.length - 1
-              ? "Finish Interview"
-              : "Next Question"}
-
-            <ArrowRight />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 export default InterviewSession;

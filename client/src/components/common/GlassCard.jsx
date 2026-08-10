@@ -1,38 +1,41 @@
+// File: src/components/common/GlassCard.jsx
+
 import { motion } from "framer-motion";
 
-function GlassCard({ children, className = "" }) {
+function GlassCard({
+    children,
+    className = "",
+}) {
 
     return (
 
         <motion.div
-
             whileHover={{
                 y: -5,
                 scale: 1.01,
             }}
-
             transition={{
-                duration: .25
+                duration: 0.25,
             }}
-
             className={`
-                bg-slate-900/70
-                backdrop-blur-xl
+                glass-card
+                w-full
+                max-w-full
+                overflow-hidden
+                rounded-3xl
                 border
                 border-slate-700
-                rounded-3xl
+                bg-slate-900/70
                 shadow-2xl
+                backdrop-blur-xl
+
                 ${className}
             `}
-
         >
-
             {children}
-
         </motion.div>
 
     );
-
 }
 
 export default GlassCard;

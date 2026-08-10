@@ -1,11 +1,11 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-import Home from "./pages/Home";
+
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import ForgotPassword from "./pages/ForgotPassword";
+
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ResumeAnalysis from "./pages/ResumeAnalysis";
 import Resume from "./pages/Resume";
@@ -16,12 +16,24 @@ import InterviewReport from "./pages/InterviewReport";
 import Analytics from "./pages/Analytics";
 import InterviewHistory from "./pages/InterviewHistory";
 import DashboardLayout from "./components/layout/DashboardLayout";
+import ResumeHistory from "./pages/ResumeHistory";
+import ResumeReport from  "./pages/ResumeReport"
+import NotFound from "./pages/NotFound";
+import ServerError from "./pages/ServerError";
+import Profile from "./pages/Profile";
+
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import Settings from "./pages/Settings";
+
+
 
 function App() {
   return (
     <>
       <div>
         <Routes>
+        
        
     <Route
         path="/login"
@@ -47,6 +59,10 @@ function App() {
         path="/resume"
         element={<Resume />}
     />
+    <Route
+    path="/settings"
+    element={<Settings />}
+/>
 
     
     
@@ -85,12 +101,43 @@ function App() {
         path="/interview-history"
         element={<InterviewHistory />}
     />
+    <Route
+    path="/profile"
+    element={<Profile />}
+/>
+
+<Route
+    path="/resume-history"
+    element={<ResumeHistory />}
+/>
+
+<Route
+    path="/resume-report/:id"
+    element={<ResumeReport />}
+/>
 
 </Route>
 
 <Route
+        path="/500"
+        element={<ServerError />}
+    />
+
+    {/* 404 - MUST BE LAST */}
+
+    <Route
+        path="*"
+        element={<NotFound />}
+    />
+
+<Route
     path="/forgot-password"
     element={<ForgotPassword />}
+/>
+
+<Route
+    path="/reset-password/:token"
+    element={<ResetPassword />}
 />
         </Routes>
       </div>

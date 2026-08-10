@@ -1,4 +1,4 @@
-
+// File: src/components/layout/DashboardLayout.jsx
 
 import { Outlet } from "react-router-dom";
 
@@ -8,37 +8,105 @@ import TopNavbar from "./TopNavbar";
 import { useSidebar } from "../../context/SidebarContext";
 
 function DashboardLayout() {
-    const { collapsed } = useSidebar();
+
+    const {
+        collapsed,
+        mobileOpen,
+        closeMobileSidebar,
+    } = useSidebar();
+
 
     return (
-        <div className="h-screen bg-slate-950 overflow-hidden">
-            {/* Fixed Sidebar */}
+
+        <div
+            className="
+                h-screen
+                overflow-hidden
+                bg-slate-950
+                text-white
+                transition-colors
+                duration-300
+                light:bg-slate-100
+                light:text-slate-900
+            "
+        >
+
+            {/* Sidebar */}
+
             <Sidebar />
 
+
+            {/* Mobile Overlay */}
+
+            {mobileOpen && (
+
+                <div
+                    onClick={closeMobileSidebar}
+                    className="
+                        fixed
+                        inset-0
+                        z-40
+                        bg-black/60
+                        backdrop-blur-sm
+                        lg:hidden
+                    "
+                />
+
+            )}
+
+
             {/* Main Content */}
+
             <div
                 className={`
-                    h-screen
                     flex
+                    h-screen
                     flex-col
                     transition-all
                     duration-500
                     ease-in-out
-                    ${collapsed ? "ml-20" : "ml-72"}
+
+                    ml-0
+
+                    lg:ml-72
+                    ${collapsed ? "lg:ml-20" : ""}
                 `}
             >
-                {/* Fixed Top Navbar */}
-                <div className="sticky top-0 z-50">
+
+                {/* Navbar */}
+
+                <div className="sticky top-0 z-30">
+
                     <TopNavbar />
+
                 </div>
 
-                {/* Scrollable Page Content */}
-                <main className="flex-1 overflow-y-auto p-8">
+
+                {/* Page Content */}
+
+                <main
+                    className="
+                        min-h-0
+                        flex-1
+                        overflow-x-hidden
+                        overflow-y-auto
+
+                        p-4
+                        sm:p-6
+                        lg:p-8
+                    "
+                >
+
                     <Outlet />
+
                 </main>
+
             </div>
+
         </div>
+
     );
+
 }
 
 export default DashboardLayout;

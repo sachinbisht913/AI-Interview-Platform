@@ -1,3 +1,5 @@
+// File: src/pages/Analytics.jsx
+
 import { useEffect, useState } from "react";
 
 import StatCard from "../components/analytics/StatCard";
@@ -5,8 +7,16 @@ import ScoreChart from "../components/analytics/ScoreChart";
 import RecentInterviewTable from "../components/analytics/RecentInterviewTable";
 import DomainChart from "../components/analytics/DomainChart";
 import EmptyState from "../components/analytics/EmptyState";
+import AnalyticsHero from "../components/analytics/AnalyticsHero";
+import AIInsights from "../components/analytics/AIInsights";
 
 import { getAnalytics } from "../api/analyticsApi";
+
+import {
+    ClipboardList,
+    TrendingUp,
+    Trophy,
+} from "lucide-react";
 
 function Analytics() {
 
@@ -14,11 +24,13 @@ function Analytics() {
 
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
 
         fetchAnalytics();
 
     }, []);
+
 
     const fetchAnalytics = async () => {
 
@@ -28,15 +40,11 @@ function Analytics() {
 
             setAnalytics(data.analytics);
 
-        }
-
-        catch (error) {
+        } catch (error) {
 
             console.log(error);
 
-        }
-
-        finally {
+        } finally {
 
             setLoading(false);
 
@@ -44,13 +52,34 @@ function Analytics() {
 
     };
 
+
     if (loading) {
 
         return (
 
-            <div className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
+            <div
+                className="
+                    analytics-page
+                    flex
+                    min-h-screen
+                    items-center
+                    justify-center
+                    px-4
+                    bg-slate-950
+                "
+            >
 
-                Loading Analytics...
+                <p
+                    className="
+                        analytics-loading-text
+                        text-sm
+                        text-white
+
+                        sm:text-base
+                    "
+                >
+                    Loading Analytics...
+                </p>
 
             </div>
 
@@ -58,68 +87,149 @@ function Analytics() {
 
     }
 
+
     if (!analytics) {
 
         return <EmptyState />;
 
     }
 
+
     return (
 
-        <div className="min-h-screen bg-slate-950 p-8">
+        <div
+            className="
+                analytics-page
+                min-h-screen
+                bg-slate-950
+                px-4
+                py-6
 
-            <div className="max-w-7xl mx-auto">
+                sm:px-6
+                sm:py-8
 
-                <h1 className="text-4xl font-bold text-white">
+                lg:px-8
+            "
+        >
 
-                    Analytics Dashboard
+            <div
+                className="
+                    mx-auto
+                    w-full
+                    max-w-7xl
+                "
+            >
 
-                </h1>
+                {/* =====================================
+                    Hero
+                ===================================== */}
 
-                <p className="text-slate-400 mt-2">
+                <AnalyticsHero
+                    totalInterviews={analytics.totalInterviews}
+                />
 
-                    Track your interview performance.
 
-                </p>
+                {/* =====================================
+                    Statistics
+                ===================================== */}
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                <div
+                    className="
+                        mt-6
+                        grid
+                        grid-cols-1
+                        gap-4
+
+                        sm:grid-cols-2
+                        sm:gap-6
+
+                        lg:mt-10
+                        lg:grid-cols-3
+                    "
+                >
 
                     <StatCard
                         title="Total Interviews"
                         value={analytics.totalInterviews}
+                        icon={ClipboardList}
+                        color="text-blue-400"
+                        change="Completed"
                     />
+
 
                     <StatCard
                         title="Average Score"
-                        value={`${Math.round(analytics.averageScore || 0)}%`}
+                        value={`${Math.round(
+                            analytics.averageScore || 0
+                        )}%`}
+                        icon={TrendingUp}
+                        color="text-emerald-400"
+                        change="Overall Performance"
                     />
+
 
                     <StatCard
                         title="Best Score"
                         value={`${analytics.bestScore || 0}%`}
+                        icon={Trophy}
+                        color="text-yellow-400"
+                        change="Highest Achievement"
                     />
 
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-8 mt-10">
 
-                <ScoreChart
+                {/* =====================================
+                    Charts
+                ===================================== */}
 
-data={analytics.history}
+                <div
+                    className="
+                        mt-6
+                        grid
+                        grid-cols-1
+                        gap-6
 
-/>
+                        lg:mt-10
+                        lg:grid-cols-2
+                        lg:gap-8
+                    "
+                >
 
-                    <DomainChart data={analytics.domains} />
+                    <ScoreChart
+                        data={analytics.history}
+                    />
+
+
+                    <DomainChart
+                        data={analytics.domains}
+                    />
 
                 </div>
 
-                <div className="mt-10">
 
-                <RecentInterviewTable
+                {/* =====================================
+                    Recent Interviews
+                ===================================== */}
 
-data={analytics.recent}
+                <div className="mt-6 lg:mt-10">
 
-/>
+                    <RecentInterviewTable
+                        data={analytics.recentInterviews}
+                    />
+
+                </div>
+
+
+                {/* =====================================
+                    AI Insights
+                ===================================== */}
+
+                <div className="mt-6 lg:mt-10">
+
+                    <AIInsights
+                        analytics={analytics}
+                    />
 
                 </div>
 
@@ -128,7 +238,6 @@ data={analytics.recent}
         </div>
 
     );
-
 }
 
 export default Analytics;

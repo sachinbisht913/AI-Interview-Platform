@@ -1,57 +1,202 @@
+// File: src/components/analytics/ScoreChart.jsx
+
 import {
     LineChart,
     Line,
+    CartesianGrid,
     XAxis,
     YAxis,
     Tooltip,
-    ResponsiveContainer
+    ResponsiveContainer,
 } from "recharts";
 
+import { TrendingUp } from "lucide-react";
 
+function ScoreChart({ data = [] }) {
 
-function ScoreChart({ data }) {
+    const chartData = data.map((item, index) => ({
+        interview: index + 1,
+        score: Number(item.overall_score),
+    }));
 
     return (
 
-        <div className="bg-slate-900 rounded-3xl border border-slate-800 p-6 h-[350px]">
+        <section
+            className="
+                score-chart
+                rounded-3xl
+                border
+                border-slate-800
+                bg-slate-900
+                p-5
+                sm:p-6
+                transition-colors
+                duration-300
+            "
+        >
 
-            <h2 className="text-white text-2xl font-bold mb-6">
+            {/* Header */}
 
-                Score Trend
+            <div
+                className="
+                    mb-6
+                    flex
+                    items-start
+                    justify-between
+                    gap-4
+                    sm:mb-8
+                "
+            >
 
-            </h2>
+                <div className="min-w-0">
 
-            <ResponsiveContainer width="100%" height="85%">
+                    <h2
+                        className="
+                            score-chart-title
+                            text-xl
+                            font-bold
+                            sm:text-2xl
+                        "
+                    >
+                        Score Trend
+                    </h2>
 
-                <LineChart data={data.map((item,index)=>({
+                    <p
+                        className="
+                            score-chart-description
+                            mt-1
+                            text-sm
+                            leading-6
+                        "
+                    >
+                        Track your interview scores over time.
+                    </p>
 
-interview:index+1,
+                </div>
 
-score:item.overall_score
 
-}))}>
+                <div
+                    className="
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        bg-blue-500/10
 
-                    <XAxis dataKey="interview" />
+                        sm:h-12
+                        sm:w-12
+                    "
+                >
 
-                    <YAxis />
-
-                    <Tooltip />
-
-                    <Line
-                        type="monotone"
-                        dataKey="score"
-                        stroke="#3B82F6"
-                        strokeWidth={3}
+                    <TrendingUp
+                        className="text-blue-400"
+                        size={20}
                     />
 
-                </LineChart>
+                </div>
 
-            </ResponsiveContainer>
+            </div>
 
-        </div>
+
+            {/* Chart */}
+
+            <div
+                className="
+                    h-[260px]
+                    w-full
+
+                    sm:h-[320px]
+                "
+            >
+
+                <ResponsiveContainer
+                    width="100%"
+                    height="100%"
+                >
+
+                    <LineChart
+                        data={chartData}
+                        margin={{
+                            top: 5,
+                            right: 5,
+                            left: -15,
+                            bottom: 5,
+                        }}
+                    >
+
+                        <CartesianGrid
+                            strokeDasharray="3 3"
+                            stroke="var(--chart-grid)"
+                        />
+
+
+                        <XAxis
+                            dataKey="interview"
+                            stroke="var(--chart-axis)"
+                            tickLine={false}
+                            axisLine={false}
+                            tick={{
+                                fill: "var(--chart-axis)",
+                                fontSize: 12,
+                            }}
+                        />
+
+
+                        <YAxis
+                            stroke="var(--chart-axis)"
+                            tickLine={false}
+                            axisLine={false}
+                            domain={[0, 10]}
+                            tick={{
+                                fill: "var(--chart-axis)",
+                                fontSize: 12,
+                            }}
+                        />
+
+
+                        <Tooltip
+                            contentStyle={{
+                                background: "var(--chart-tooltip-bg)",
+                                border: "1px solid var(--chart-tooltip-border)",
+                                borderRadius: "12px",
+                                color: "var(--chart-tooltip-text)",
+                                fontSize: "13px",
+                            }}
+                            labelStyle={{
+                                color: "var(--chart-tooltip-text)",
+                            }}
+                            itemStyle={{
+                                color: "var(--chart-tooltip-text)",
+                            }}
+                        />
+
+
+                        <Line
+                            type="monotone"
+                            dataKey="score"
+                            stroke="#3b82f6"
+                            strokeWidth={3}
+                            dot={{
+                                r: 4,
+                                fill: "#3b82f6",
+                            }}
+                            activeDot={{
+                                r: 7,
+                            }}
+                        />
+
+                    </LineChart>
+
+                </ResponsiveContainer>
+
+            </div>
+
+        </section>
 
     );
-
 }
 
 export default ScoreChart;

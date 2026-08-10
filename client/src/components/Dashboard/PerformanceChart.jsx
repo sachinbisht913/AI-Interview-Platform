@@ -10,140 +10,302 @@ import {
     Tooltip,
 } from "recharts";
 
-const data = [
-    { day: "Mon", score: 72 },
-    { day: "Tue", score: 78 },
-    { day: "Wed", score: 75 },
-    { day: "Thu", score: 82 },
-    { day: "Fri", score: 88 },
-    { day: "Sat", score: 85 },
-    { day: "Sun", score: 91 },
-];
 
 function CustomTooltip({ active, payload }) {
-    if (active && payload && payload.length) {
-        return (
-            <div className="rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 shadow-xl">
-                <p className="text-sm text-slate-300">
-                    Score:{" "}
-                    <span className="font-semibold text-blue-400">
-                        {payload[0].value}%
-                    </span>
-                </p>
-            </div>
-        );
+
+    if (!active || !payload || !payload.length) {
+        return null;
     }
 
-    return null;
+    return (
+        <div
+            className="
+                performance-tooltip
+                rounded-xl
+                border
+                border-slate-700
+                bg-slate-900
+                px-4
+                py-3
+                shadow-xl
+            "
+        >
+
+            <p className="text-sm text-slate-300">
+
+                Score{" "}
+
+                <span className="font-semibold text-blue-400">
+
+                    {payload[0].value}%
+
+                </span>
+
+            </p>
+
+        </div>
+    );
 }
 
-function PerformanceChart() {
+
+function PerformanceChart({ data = [] }) {
+
+    const latestScore =
+        data.length > 0
+            ? data[data.length - 1].score
+            : 0;
+
+    const firstScore =
+        data.length > 0
+            ? data[0].score
+            : 0;
+
+    const improvement = latestScore - firstScore;
+
+
     return (
-        <section className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
+
+        <section
+            className="
+                performance-chart
+                rounded-3xl
+                border
+                border-slate-800
+                bg-slate-900
+                p-5
+
+                sm:p-6
+            "
+        >
+
             {/* Header */}
-            <div className="mb-8 flex items-center justify-between">
+
+            <div
+                className="
+                    mb-6
+                    flex
+                    flex-col
+                    gap-4
+
+                    md:flex-row
+                    md:items-center
+                    md:justify-between
+                "
+            >
+
                 <div>
-                    <h2 className="text-2xl font-bold text-white">
+
+                    <h2
+                        className="
+                            performance-title
+                            text-xl
+                            font-bold
+                            text-white
+
+                            sm:text-2xl
+                        "
+                    >
                         Performance Overview
                     </h2>
 
-                    <p className="mt-1 text-slate-400">
-                        Your interview scores over the last 7 days.
-                    </p>
-                </div>
 
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-2">
-                    <span className="text-sm font-medium text-emerald-400">
-                        ↑ +14% Improvement
-                    </span>
-                </div>
-            </div>
+                    <p
+                        className="
+                            performance-description
+                            mt-2
+                            text-sm
+                            text-slate-400
 
-            {/* Chart */}
-            <div className="h-[350px]">
-                <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart
-                        data={data}
-                        margin={{
-                            top: 10,
-                            right: 10,
-                            left: -20,
-                            bottom: 0,
-                        }}
+                            sm:text-base
+                        "
                     >
-                        <defs>
-                            <linearGradient
-                                id="scoreGradient"
-                                x1="0"
-                                y1="0"
-                                x2="0"
-                                y2="1"
-                            >
-                                <stop
-                                    offset="5%"
-                                    stopColor="#3b82f6"
-                                    stopOpacity={0.45}
-                                />
+                        Your interview performance over the last few attempts.
+                    </p>
 
-                                <stop
-                                    offset="95%"
-                                    stopColor="#3b82f6"
-                                    stopOpacity={0}
-                                />
-                            </linearGradient>
-                        </defs>
+                </div>
 
-                        <CartesianGrid
-                            stroke="#1e293b"
-                            strokeDasharray="4 4"
-                            vertical={false}
-                        />
 
-                        <XAxis
-                            dataKey="day"
-                            tick={{
-                                fill: "#94a3b8",
-                                fontSize: 13,
-                            }}
-                            tickLine={false}
-                            axisLine={false}
-                        />
+                {/* Improvement */}
 
-                        <YAxis
-                            domain={[50, 100]}
-                            tick={{
-                                fill: "#94a3b8",
-                                fontSize: 13,
-                            }}
-                            tickLine={false}
-                            axisLine={false}
-                        />
+                <div
+                    className={`
+                        self-start
+                        rounded-xl
+                        border
+                        px-4
+                        py-2
 
-                        <Tooltip
-                            content={<CustomTooltip />}
-                            cursor={{
-                                stroke: "#3b82f6",
-                                strokeWidth: 1,
-                                strokeDasharray: "4 4",
-                            }}
-                        />
+                        ${
+                            improvement >= 0
+                                ? "border-emerald-500/20 bg-emerald-500/10"
+                                : "border-red-500/20 bg-red-500/10"
+                        }
+                    `}
+                >
 
-                        <Area
-                            type="monotone"
-                            dataKey="score"
-                            stroke="#3b82f6"
-                            strokeWidth={3}
-                            fill="url(#scoreGradient)"
-                            activeDot={{
-                                r: 7,
-                                stroke: "#3b82f6",
-                                strokeWidth: 3,
-                                fill: "#fff",
-                            }}
-                        />
-                    </AreaChart>
-                </ResponsiveContainer>
+                    <span
+                        className={`
+                            text-sm
+                            font-medium
+
+                            ${
+                                improvement >= 0
+                                    ? "text-emerald-400"
+                                    : "text-red-400"
+                            }
+                        `}
+                    >
+
+                        {improvement >= 0 ? "↑" : "↓"}{" "}
+
+                        {Math.abs(improvement)}% Overall
+
+                    </span>
+
+                </div>
+
             </div>
+
+
+            {/* Empty State */}
+
+            {data.length === 0 ? (
+
+                <div
+                    className="
+                        flex
+                        h-64
+                        items-center
+                        justify-center
+                    "
+                >
+
+                    <p className="performance-empty text-slate-500">
+
+                        No performance data available.
+
+                    </p>
+
+                </div>
+
+            ) : (
+
+                <div className="h-72 sm:h-80 lg:h-[350px]">
+
+                    <ResponsiveContainer
+                        width="100%"
+                        height="100%"
+                    >
+
+                        <AreaChart
+                            data={data}
+                            margin={{
+                                top: 10,
+                                right: 10,
+                                left: -20,
+                                bottom: 0,
+                            }}
+                        >
+
+                            <defs>
+
+                                <linearGradient
+                                    id="scoreGradient"
+                                    x1="0"
+                                    y1="0"
+                                    x2="0"
+                                    y2="1"
+                                >
+
+                                    <stop
+                                        offset="5%"
+                                        stopColor="#3b82f6"
+                                        stopOpacity={0.45}
+                                    />
+
+                                    <stop
+                                        offset="95%"
+                                        stopColor="#3b82f6"
+                                        stopOpacity={0}
+                                    />
+
+                                </linearGradient>
+
+                            </defs>
+
+
+                            {/* Grid */}
+
+                            <CartesianGrid
+                                stroke="var(--chart-grid)"
+                                strokeDasharray="4 4"
+                                vertical={false}
+                            />
+
+
+                            {/* X Axis */}
+
+                            <XAxis
+                                dataKey="day"
+                                tick={{
+                                    fill: "var(--chart-text)",
+                                    fontSize: 12,
+                                }}
+                                tickMargin={10}
+                                tickLine={false}
+                                axisLine={false}
+                            />
+
+
+                            {/* Y Axis */}
+
+                            <YAxis
+                                domain={[0, 100]}
+                                tick={{
+                                    fill: "var(--chart-text)",
+                                    fontSize: 12,
+                                }}
+                                width={35}
+                                tickLine={false}
+                                axisLine={false}
+                            />
+
+
+                            {/* Tooltip */}
+
+                            <Tooltip
+                                content={<CustomTooltip />}
+                                cursor={{
+                                    stroke: "#3b82f6",
+                                    strokeDasharray: "4 4",
+                                }}
+                            />
+
+
+                            {/* Area */}
+
+                            <Area
+                                type="monotone"
+                                dataKey="score"
+                                stroke="#3b82f6"
+                                strokeWidth={3}
+                                fill="url(#scoreGradient)"
+                                activeDot={{
+                                    r: 6,
+                                    fill: "var(--chart-dot)",
+                                    stroke: "#3b82f6",
+                                    strokeWidth: 3,
+                                }}
+                            />
+
+                        </AreaChart>
+
+                    </ResponsiveContainer>
+
+                </div>
+
+            )}
+
         </section>
     );
 }

@@ -1,5 +1,6 @@
 const {
     historyService,
+    reportService,
 } = require("../services/historyService");
 
 const getHistory = async (req, res) => {

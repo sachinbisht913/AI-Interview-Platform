@@ -1,1 +1,2317 @@
+@import "tailwindcss";
 
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] body {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+
+/* =========================================
+   Light Theme - Existing Tailwind Classes
+========================================= */
+
+/* Main backgrounds */
+
+html[data-theme="light"] .bg-slate-950 {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .bg-slate-900 {
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .bg-slate-800 {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .bg-slate-800\/80 {
+    background-color: rgb(241 245 249 / 0.8);
+}
+
+html[data-theme="light"] .bg-slate-800\/70 {
+    background-color: rgb(241 245 249 / 0.7);
+}
+
+
+/* Borders */
+
+html[data-theme="light"] .border-slate-800 {
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .border-slate-700 {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .border-slate-600 {
+    border-color: #94a3b8;
+}
+
+
+/* Text */
+
+html[data-theme="light"] .text-slate-400 {
+    color: #64748b;
+}
+
+html[data-theme="light"] .text-slate-500 {
+    color: #64748b;
+}
+
+html[data-theme="light"] .text-slate-300 {
+    color: #334155;
+}
+
+
+/* Hover backgrounds */
+
+html[data-theme="light"] .hover\:bg-slate-800:hover {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .hover\:bg-slate-700:hover {
+    background-color: #e2e8f0;
+}
+
+
+/* Hover text */
+
+html[data-theme="light"] .hover\:text-white:hover {
+    color: #0f172a;
+}
+
+
+/* Inputs */
+
+html[data-theme="light"] input {
+    color: #0f172a;
+}
+
+
+/* Placeholder */
+
+html[data-theme="light"] input::placeholder {
+    color: #94a3b8;
+}
+
+/* =========================================
+   Welcome Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .welcome-card {
+    border-color: #dbe4f0;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #ffffff 55%,
+        #eff6ff 100%
+    );
+}
+
+html[data-theme="light"] .welcome-card h1 {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .welcome-card p {
+    color: #64748b;
+}
+
+html[data-theme="light"] .welcome-stat-card {
+    border-color: #dbe4f0;
+    background-color: rgba(241, 245, 249, 0.8);
+}
+
+html[data-theme="light"] .welcome-stat-card h2 {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .welcome-stat-card span {
+    color: #64748b;
+}
+
+/* =========================================
+   Stats Grid - Light Theme
+========================================= */
+
+html[data-theme="light"] .dashboard-section-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .dashboard-section-description {
+    color: #64748b;
+}
+
+/* =========================================
+   Stat Cards - Light Theme
+========================================= */
+
+html[data-theme="light"] .stat-card {
+    border-color: #dbe4f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .stat-card:hover {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .stat-card-title {
+    color: #475569;
+}
+
+html[data-theme="light"] .stat-card-value {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .stat-card-icon {
+    background-color: #f1f5f9;
+}
+
+/* =========================================
+   Performance Chart - Theme
+========================================= */
+
+:root {
+    --chart-grid: #1e293b;
+    --chart-text: #94a3b8;
+    --chart-dot: #ffffff;
+}
+
+html[data-theme="light"] {
+    --chart-grid: #cbd5e1;
+    --chart-text: #64748b;
+    --chart-dot: #ffffff;
+}
+
+html[data-theme="light"] .performance-chart {
+    border-color: #dbe4f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .performance-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .performance-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .performance-empty {
+    color: #64748b;
+}
+
+html[data-theme="light"] .performance-tooltip {
+    border-color: #dbe4f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .performance-tooltip p {
+    color: #475569;
+}
+
+/* =========================================
+   Recent Interviews - Light Theme
+========================================= */
+
+html[data-theme="light"] .recent-interviews-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .recent-interviews-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .recent-interviews-button {
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+html[data-theme="light"] .recent-interviews-button:hover {
+    border-color: #3b82f6;
+    color: #0f172a;
+}
+
+html[data-theme="light"] .recent-interview-item {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .recent-interview-item:hover {
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .recent-interview-icon {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .recent-interview-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .recent-interview-category {
+    color: #64748b;
+}
+
+html[data-theme="light"] .recent-interview-date {
+    color: #94a3b8;
+}
+
+html[data-theme="light"] .recent-interview-score-label {
+    color: #64748b;
+}
+
+html[data-theme="light"] .recent-interview-score {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .recent-interviews-empty {
+    border-color: #cbd5e1;
+}
+
+/* =========================================
+   Recommendation Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .recommendation-card {
+    border-color: #dbe4f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .recommendation-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .recommendation-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .recommendation-empty {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .recommendation-item {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .recommendation-item:hover {
+    border-color: #c4b5fd;
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .recommendation-icon {
+    background-color: #e2e8f0;
+}
+
+html[data-theme="light"] .recommendation-text {
+    color: #475569;
+}
+
+html[data-theme="light"] .ai-insight {
+    background: linear-gradient(
+        to right,
+        rgba(59, 130, 246, 0.08),
+        rgba(139, 92, 246, 0.08)
+    );
+}
+
+html[data-theme="light"] .ai-insight-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .ai-insight-text {
+    color: #475569;
+}
+
+/* =========================================
+   Quick Actions - Light Theme
+========================================= */
+
+html[data-theme="light"] .quick-actions-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .quick-actions-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .quick-action-card {
+    border-color: #dbe4f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .quick-action-card:hover {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .quick-action-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .quick-action-description {
+    color: #64748b;
+}
+
+/* =========================================
+   Top Navbar - Light Theme
+========================================= */
+
+html[data-theme="light"] .top-navbar {
+    border-color: #e2e8f0;
+    background-color: rgba(255, 255, 255, 0.92);
+}
+
+html[data-theme="light"] .navbar-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .navbar-subtitle {
+    color: #64748b;
+}
+
+html[data-theme="light"] .navbar-toggle-button {
+    border-color: #cbd5e1;
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+html[data-theme="light"] .navbar-toggle-button:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+/* =========================================
+   User Menu - Light Theme
+========================================= */
+
+html[data-theme="light"] .user-menu-button {
+    border-color: #cbd5e1;
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .user-menu-button:hover {
+    border-color: #cbd5e1;
+    background-color: #e2e8f0;
+}
+
+html[data-theme="light"] .user-menu-name {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .user-menu-subtitle {
+    color: #64748b;
+}
+
+html[data-theme="light"] .user-menu-arrow {
+    color: #64748b;
+}
+
+html[data-theme="light"] .user-menu-dropdown {
+    border-color: #dbe4f0;
+    background-color: #ffffff;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+
+html[data-theme="light"] .user-menu-item {
+    color: #475569;
+}
+
+html[data-theme="light"] .user-menu-item:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+html[data-theme="light"] .user-menu-divider {
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .user-menu-logout {
+    color: #ef4444;
+}
+
+html[data-theme="light"] .user-menu-logout:hover {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
+
+/* =========================================
+   Resume Page - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .resume-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-description {
+    color: #64748b;
+}
+
+/* =========================================
+   Resume Upload Area - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-upload-area {
+    border-color: #cbd5e1;
+    background: linear-gradient(
+        to bottom right,
+        #ffffff,
+        #f1f5f9
+    );
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .resume-upload-area:hover {
+    border-color: #3b82f6;
+}
+
+html[data-theme="light"] .resume-upload-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-upload-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .resume-selected-file {
+    background-color: #e2e8f0;
+    color: #16a34a;
+}
+/* =========================================
+   Resume Upload Button - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-upload-button {
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.18);
+}
+
+html[data-theme="light"] .resume-upload-button:hover {
+    box-shadow: 0 16px 30px rgba(37, 99, 235, 0.25);
+}
+
+/* =========================================
+   Resume Loading Overlay - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-loading-card {
+    background-color: #ffffff;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.10);
+}
+
+html[data-theme="light"] .resume-loading-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-loading-description {
+    color: #64748b;
+}
+
+/* =========================================
+   Resume Analysis - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-analysis-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .resume-missing-title {
+    color: #ca8a04;
+}
+
+html[data-theme="light"] .resume-questions-title {
+    color: #0f172a;
+}
+
+/* =========================================
+   Score Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .score-card-title {
+    color: #334155;
+}
+
+/* =========================================
+   Resume Section Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-section-item {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .resume-section-text {
+    color: #334155;
+}
+
+/* =========================================
+   Skill Badge - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-skill-badge {
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+}
+
+/* =========================================
+   Question Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-question-text {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-question-icon {
+    color: #64748b;
+}
+
+html[data-theme="light"] .resume-question-answer {
+    color: #64748b;
+}
+
+/* =========================================
+   Glass Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .glass-card {
+    border-color: #e2e8f0;
+    background-color: rgba(255, 255, 255, 0.90);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* =========================================
+   Mock Interview Page - Light Theme
+========================================= */
+
+html[data-theme="light"] .mock-interview-page {
+    background-color: #f8fafc;
+}
+
+/* =========================================
+   Mock Interview Setup - Light Theme
+========================================= */
+
+html[data-theme="light"] .interview-setup-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .interview-setup-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .interview-setup-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .interview-setup-heading {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .interview-info-section {
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .interview-info-card {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .interview-info-label {
+    color: #64748b;
+}
+
+html[data-theme="light"] .interview-info-value {
+    color: #0f172a;
+}
+
+/* =========================================
+   Domain Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .domain-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .domain-card-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .domain-option {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+html[data-theme="light"] .domain-option:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+/* =========================================
+   Difficulty Selector - Light Theme
+========================================= */
+
+html[data-theme="light"] .difficulty-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .difficulty-card-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .difficulty-option {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+html[data-theme="light"] .difficulty-option:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+/* =========================================
+   Question Selector - Light Theme
+========================================= */
+
+html[data-theme="light"] .question-selector-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .question-selector-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .question-option {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+html[data-theme="light"] .question-option:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+/* =========================================
+   Start Interview Button - Light Theme
+========================================= */
+
+html[data-theme="light"] .start-interview-button {
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.18);
+}
+
+/* =========================================
+   Interview Session - Light Theme
+========================================= */
+
+html[data-theme="light"] .interview-session-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .interview-session-header {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .interview-session-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .interview-timer {
+    border-color: #e2e8f0;
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .interview-progress-text {
+    color: #334155;
+}
+
+html[data-theme="light"] .interview-progress-percent {
+    color: #64748b;
+}
+
+html[data-theme="light"] .interview-progress-track {
+    background-color: #e2e8f0;
+}
+
+html[data-theme="light"] .interview-question-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .interview-question-text {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .interview-answer {
+    border-color: #cbd5e1;
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+html[data-theme="light"] .interview-answer::placeholder {
+    color: #94a3b8;
+}
+
+html[data-theme="light"] .interview-character-count {
+    color: #64748b;
+}
+
+/* =========================================
+   Interview Result - Light Theme
+========================================= */
+
+html[data-theme="light"] .interview-result-page {
+    background-color: #f8fafc;
+}
+
+/* =========================================
+   Interview Score Overview - Light Theme
+========================================= */
+
+html[data-theme="light"] .score-overview-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .score-overview-description {
+    color: #64748b;
+}
+
+/* =========================================
+   Interview Score Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .interview-score-card {
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .interview-score-card:hover {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .score-card-label {
+    color: #475569;
+}
+
+html[data-theme="light"] .score-card-icon {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .score-card-progress-label {
+    color: #64748b;
+}
+
+html[data-theme="light"] .score-card-progress-track {
+    background-color: #e2e8f0;
+}
+
+html[data-theme="light"] .score-card-subtitle {
+    color: #64748b;
+}
+
+/* =========================================
+   Interview Hero - Light Theme
+========================================= */
+
+html[data-theme="light"] .interview-hero {
+    border-color: #e2e8f0;
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f8fafc,
+        #eff6ff
+    );
+}
+
+html[data-theme="light"] .interview-hero-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .interview-hero-message {
+    color: #1e293b;
+}
+
+html[data-theme="light"] .interview-hero-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .interview-hero-score {
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .interview-hero-score-ring {
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .interview-hero-score-label {
+    color: #64748b;
+}
+
+html[data-theme="light"] .interview-hero-banner {
+    background-color: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+html[data-theme="light"] .interview-hero-banner-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .interview-hero-banner-text {
+    color: #475569;
+}
+
+/* =========================================
+   AI Summary - Light Theme
+========================================= */
+
+html[data-theme="light"] .ai-summary {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .ai-summary-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .ai-summary-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .ai-summary-content {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .ai-summary-section-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .ai-summary-text {
+    color: #334155;
+}
+
+html[data-theme="light"] .ai-summary-insight-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .ai-summary-insight-text {
+    color: #475569;
+}
+
+/* =========================================
+   Question Feedback - Light Theme
+========================================= */
+
+html[data-theme="light"] .question-feedback {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .question-feedback-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .question-feedback-heading {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .question-feedback-body {
+    color: #334155;
+}
+
+html[data-theme="light"] .question-feedback-ai {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+/* =========================================
+   Strengths Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .strengths-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .strengths-card-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .strengths-card-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .strengths-empty {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .strengths-item {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .strengths-item:hover {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .strengths-item-text {
+    color: #334155;
+}
+
+html[data-theme="light"] .strengths-footer-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .strengths-footer-text {
+    color: #475569;
+}
+
+/* =========================================
+   Weakness Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .weakness-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .weakness-card-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .weakness-card-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .weakness-empty {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .weakness-item {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .weakness-item:hover {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .weakness-item-text {
+    color: #334155;
+}
+
+html[data-theme="light"] .weakness-footer-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .weakness-footer-text {
+    color: #475569;
+}
+
+/* =========================================
+   Strength Card - Light Theme
+========================================= */
+
+html[data-theme="light"] .strength-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .strength-card-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .strength-card-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .strength-empty {
+    border-color: #cbd5e1;
+}
+
+html[data-theme="light"] .strength-item {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .strength-item:hover {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .strength-item-text {
+    color: #334155;
+}
+
+html[data-theme="light"] .strength-footer {
+    border-color: rgba(16, 185, 129, 0.25);
+}
+
+html[data-theme="light"] .strength-footer-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .strength-footer-text {
+    color: #475569;
+}
+
+/* =========================================
+   Analytics Page - Light Theme
+========================================= */
+
+html[data-theme="light"] .analytics-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .analytics-loading-text {
+    color: #0f172a;
+}
+
+/* =========================================
+   AI Insights - Light Theme
+========================================= */
+
+html[data-theme="light"] .ai-insights {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+}
+
+html[data-theme="light"] .ai-insights-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .ai-insights-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .ai-insight-item {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .ai-insight-item:hover {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .ai-insight-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .ai-insight-text {
+    color: #475569;
+}
+
+/* =========================================
+   Analytics Hero - Light Theme
+========================================= */
+
+html[data-theme="light"] .analytics-hero {
+    border-color: #e2e8f0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f8fafc 55%,
+            #eff6ff 100%
+        );
+}
+
+html[data-theme="light"] .analytics-hero-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .analytics-hero-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .analytics-stat {
+    border-color: #e2e8f0;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+html[data-theme="light"] .analytics-stat-label {
+    color: #64748b;
+}
+
+html[data-theme="light"] .analytics-stat-value {
+    color: #0f172a;
+}
+
+/* =========================================
+   Domain Chart Theme
+========================================= */
+
+:root {
+    --chart-grid: #334155;
+    --chart-axis: #94a3b8;
+    --chart-tooltip-bg: #0f172a;
+    --chart-tooltip-border: #334155;
+    --chart-tooltip-text: #ffffff;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] {
+
+    --chart-grid: #e2e8f0;
+    --chart-axis: #64748b;
+    --chart-tooltip-bg: #ffffff;
+    --chart-tooltip-border: #e2e8f0;
+    --chart-tooltip-text: #0f172a;
+
+}
+
+
+html[data-theme="light"] .domain-chart {
+
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+
+}
+
+
+html[data-theme="light"] .domain-chart-title {
+
+    color: #0f172a;
+
+}
+
+
+html[data-theme="light"] .domain-chart-description {
+
+    color: #64748b;
+
+}
+
+/* =========================================
+   Empty State
+========================================= */
+
+.empty-state {
+    background-color: #020617;
+    color: #ffffff;
+}
+
+.empty-state-title {
+    color: #ffffff;
+}
+
+.empty-state-description {
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .empty-state {
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+html[data-theme="light"] .empty-state-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .empty-state-description {
+    color: #64748b;
+}
+/* =========================================
+   Recent Interview Table
+========================================= */
+
+.recent-interview-table {
+    background-color: #0f172a;
+    border-color: #1e293b;
+}
+
+.recent-table-title,
+.recent-item-title {
+    color: #ffffff;
+}
+
+.recent-table-description {
+    color: #94a3b8;
+}
+
+.recent-table-empty {
+    border-color: #334155;
+    color: #64748b;
+}
+
+.recent-interview-item {
+    background-color: rgba(2, 6, 23, 0.6);
+    border-color: #1e293b;
+}
+
+.recent-date {
+    color: #cbd5e1;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .recent-interview-table {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .recent-table-title,
+html[data-theme="light"] .recent-item-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .recent-table-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .recent-table-empty {
+    border-color: #cbd5e1;
+    color: #64748b;
+}
+
+html[data-theme="light"] .recent-interview-item {
+    background-color: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .recent-date {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+/* =========================================
+   Recharts Theme Variables
+========================================= */
+
+:root {
+    --chart-grid: #334155;
+    --chart-axis: #94a3b8;
+
+    --chart-tooltip-bg: #0f172a;
+    --chart-tooltip-border: #334155;
+    --chart-tooltip-text: #ffffff;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] {
+    --chart-grid: #e2e8f0;
+    --chart-axis: #64748b;
+
+    --chart-tooltip-bg: #ffffff;
+    --chart-tooltip-border: #e2e8f0;
+    --chart-tooltip-text: #0f172a;
+}
+
+
+/* =========================================
+   Score Chart
+========================================= */
+
+html[data-theme="light"] .score-chart {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .score-chart-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .score-chart-description {
+    color: #64748b;
+}
+
+/* =========================================
+   Analytics Stat Card
+========================================= */
+
+.analytics-stat-card {
+    background-color: #0f172a;
+    border-color: #1e293b;
+}
+
+.analytics-stat-title {
+    color: #94a3b8;
+}
+
+.analytics-stat-value {
+    color: #ffffff;
+}
+
+.analytics-stat-icon {
+    background-color: #1e293b;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .analytics-stat-card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .analytics-stat-title {
+    color: #64748b;
+}
+
+html[data-theme="light"] .analytics-stat-value {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .analytics-stat-icon {
+    background-color: #f1f5f9;
+}
+/* =========================================
+   Interview History Page
+========================================= */
+
+.interview-history-page {
+    background-color: #020617;
+}
+
+.history-loading {
+    background-color: #020617;
+}
+
+.history-loading-text {
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .interview-history-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .history-loading {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .history-loading-text {
+    color: #64748b;
+}
+
+/* =========================================
+   History Header
+========================================= */
+
+.history-header {
+    background-color: #0f172a;
+    border-color: #1e293b;
+}
+
+.history-header-title {
+    color: #ffffff;
+}
+
+.history-header-description {
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .history-header {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .history-header-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .history-header-description {
+    color: #64748b;
+}
+
+/* =========================================
+   Empty Interview History
+========================================= */
+
+.empty-history {
+    background-color: #0f172a;
+    border-color: #1e293b;
+}
+
+.empty-history-icon {
+    background-color: #1e293b;
+}
+
+.empty-history-icon-color {
+    color: #94a3b8;
+}
+
+.empty-history-title {
+    color: #ffffff;
+}
+
+.empty-history-description {
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .empty-history {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .empty-history-icon {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .empty-history-icon-color {
+    color: #64748b;
+}
+
+html[data-theme="light"] .empty-history-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .empty-history-description {
+    color: #64748b;
+}
+
+/* =========================================
+   History Card
+========================================= */
+
+.history-card {
+    border-color: #1e293b;
+}
+
+.history-card-title {
+    color: #ffffff;
+}
+
+.history-card-subtitle {
+    color: #94a3b8;
+}
+
+.history-card-date {
+    background-color: #1e293b;
+    color: #cbd5e1;
+}
+
+.history-retake-button {
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+.history-retake-button:hover {
+    border-color: #64748b;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .history-card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .history-card:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .history-card-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .history-card-subtitle {
+    color: #64748b;
+}
+
+html[data-theme="light"] .history-card-date {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+html[data-theme="light"] .history-retake-button {
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+html[data-theme="light"] .history-retake-button:hover {
+    border-color: #94a3b8;
+    color: #0f172a;
+    background-color: #f8fafc;
+}
+
+/* =========================================
+   History Filters
+========================================= */
+
+.history-filters {
+    border-color: #1e293b;
+}
+
+.history-filter-input {
+    border-color: #334155;
+    color: #ffffff;
+}
+
+.history-filter-input::placeholder {
+    color: #64748b;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .history-filters {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .history-filter-input {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+html[data-theme="light"] .history-filter-input::placeholder {
+    color: #94a3b8;
+}
+
+html[data-theme="light"] .history-filter-input:focus {
+    border-color: #3b82f6;
+}
+
+/* =========================================
+   History Stats
+========================================= */
+
+.history-stat-card {
+    border-color: #1e293b;
+}
+
+.history-stat-title {
+    color: #94a3b8;
+}
+
+.history-stat-icon {
+    background-color: #1e293b;
+}
+
+.history-stat-value {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .history-stat-card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+html[data-theme="light"] .history-stat-card:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .history-stat-title {
+    color: #64748b;
+}
+
+html[data-theme="light"] .history-stat-icon {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .history-stat-value {
+    color: #0f172a;
+}
+/* =========================================
+   Resume History
+========================================= */
+
+.resume-history-page {
+    background-color: #020617;
+}
+
+.resume-history-title {
+    color: #ffffff;
+}
+
+.resume-history-description {
+    color: #94a3b8;
+}
+
+.resume-history-empty {
+    border-color: #334155;
+    color: #64748b;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-history-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .resume-history-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-history-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .resume-history-empty {
+    border-color: #cbd5e1;
+    color: #64748b;
+}
+
+/* =========================================
+   Resume History Card
+========================================= */
+
+.resume-history-card {
+    background-color: #0f172a;
+    border-color: #1e293b;
+}
+
+.resume-history-file-name {
+    color: #ffffff;
+}
+
+.resume-history-date {
+    background-color: #1e293b;
+    color: #cbd5e1;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-history-card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="light"] .resume-history-card:hover {
+    border-color: #3b82f6;
+}
+
+html[data-theme="light"] .resume-history-file-name {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-history-date {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+/* =========================================
+   Resume History Page
+========================================= */
+
+.resume-history-page {
+    background-color: #020617;
+}
+
+.resume-history-title {
+    color: #ffffff;
+}
+
+.resume-history-muted {
+    color: #94a3b8;
+}
+
+.resume-history-empty {
+    border-color: #334155;
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-history-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .resume-history-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-history-muted {
+    color: #64748b;
+}
+
+html[data-theme="light"] .resume-history-empty {
+    border-color: #cbd5e1;
+    color: #64748b;
+}
+
+/* =========================================
+   Resume Report
+========================================= */
+
+.resume-report-page {
+    background-color: #020617;
+}
+
+.resume-report-title {
+    color: #ffffff;
+}
+
+.resume-report-muted {
+    color: #94a3b8;
+}
+
+.resume-report-file-name {
+    color: #cbd5e1;
+}
+
+.resume-report-score-label {
+    color: #64748b;
+}
+
+
+/* =========================================
+   Hero
+========================================= */
+
+.resume-report-hero {
+    border-color: #1e293b;
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #0f172a,
+        #172554
+    );
+}
+
+
+/* =========================================
+   Cards
+========================================= */
+
+.resume-report-card {
+    border-color: #1e293b;
+    background-color: #0f172a;
+}
+
+
+/* =========================================
+   Section Items
+========================================= */
+
+.resume-report-item {
+    border-color: #1e293b;
+    background-color: rgba(30, 41, 59, 0.4);
+}
+
+.resume-report-item-text {
+    color: #cbd5e1;
+}
+
+
+/* =========================================
+   Light Theme
+========================================= */
+
+html[data-theme="light"] .resume-report-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .resume-report-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .resume-report-muted {
+    color: #64748b;
+}
+
+html[data-theme="light"] .resume-report-file-name {
+    color: #475569;
+}
+
+html[data-theme="light"] .resume-report-score-label {
+    color: #64748b;
+}
+
+
+/* =========================================
+   Light Hero
+========================================= */
+
+html[data-theme="light"] .resume-report-hero {
+    border-color: #dbeafe;
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f8fafc,
+        #eff6ff
+    );
+
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================
+   Light Cards
+========================================= */
+
+html[data-theme="light"] .resume-report-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================
+   Light Section Items
+========================================= */
+
+html[data-theme="light"] .resume-report-item {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .resume-report-item:hover {
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .resume-report-item-text {
+    color: #475569;
+}
+
+/* =========================================
+   Profile Page
+========================================= */
+
+.profile-page {
+    color: #ffffff;
+}
+
+.profile-title {
+    color: #ffffff;
+}
+
+.profile-muted {
+    color: #94a3b8;
+}
+
+.profile-label {
+    color: #cbd5e1;
+}
+
+.profile-caption {
+    color: #64748b;
+}
+
+.profile-value {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   Cards
+========================================= */
+
+.profile-card {
+    border-color: #1e293b;
+    background-color: #0f172a;
+}
+
+.profile-sub-card {
+    border-color: #1e293b;
+    background-color: rgba(2, 6, 23, 0.6);
+}
+
+.profile-avatar {
+    border-color: #334155;
+    background-color: #1e293b;
+}
+
+.profile-icon-box {
+    background-color: #1e293b;
+}
+
+
+/* =========================================
+   Inputs
+========================================= */
+
+.profile-input {
+    border-color: #334155;
+    background-color: #020617;
+    color: #ffffff;
+}
+
+.profile-input::placeholder {
+    color: #64748b;
+}
+
+
+/* =========================================
+   Messages
+========================================= */
+
+.profile-success {
+    border-color: rgba(16, 185, 129, 0.2);
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+.profile-success-text {
+    color: #6ee7b7;
+}
+
+.profile-error {
+    border-color: rgba(239, 68, 68, 0.2);
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.profile-error-text {
+    color: #fca5a5;
+}
+
+
+/* =========================================
+   Password Button
+========================================= */
+
+.profile-password-button {
+    border-color: #334155;
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.profile-password-button:hover {
+    border-color: #475569;
+    background-color: #334155;
+}
+
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+html[data-theme="light"] .profile-page {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .profile-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .profile-muted {
+    color: #64748b;
+}
+
+html[data-theme="light"] .profile-label {
+    color: #475569;
+}
+
+html[data-theme="light"] .profile-caption {
+    color: #64748b;
+}
+
+html[data-theme="light"] .profile-value {
+    color: #0f172a;
+}
+
+
+/* =========================================
+   Light Cards
+========================================= */
+
+html[data-theme="light"] .profile-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="light"] .profile-sub-card {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .profile-avatar {
+    border-color: #dbeafe;
+    background-color: #eff6ff;
+}
+
+html[data-theme="light"] .profile-icon-box {
+    background-color: #f1f5f9;
+}
+
+
+/* =========================================
+   Light Inputs
+========================================= */
+
+html[data-theme="light"] .profile-input {
+    border-color: #cbd5e1;
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+html[data-theme="light"] .profile-input::placeholder {
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   Light Messages
+========================================= */
+
+html[data-theme="light"] .profile-success {
+    border-color: rgba(16, 185, 129, 0.2);
+    background-color: #ecfdf5;
+}
+
+html[data-theme="light"] .profile-success-text {
+    color: #047857;
+}
+
+html[data-theme="light"] .profile-error {
+    border-color: rgba(239, 68, 68, 0.2);
+    background-color: #fef2f2;
+}
+
+html[data-theme="light"] .profile-error-text {
+    color: #b91c1c;
+}
+
+
+/* =========================================
+   Light Password Button
+========================================= */
+
+html[data-theme="light"] .profile-password-button {
+    border-color: #cbd5e1;
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+html[data-theme="light"] .profile-password-button:hover {
+    border-color: #94a3b8;
+    background-color: #e2e8f0;
+}
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+.settings-title {
+    color: #ffffff;
+}
+
+.settings-muted {
+    color: #94a3b8;
+}
+
+.settings-card {
+    border-color: #1e293b;
+    background-color: #0f172a;
+}
+
+.settings-sub-card {
+    border-color: #1e293b;
+    background-color: rgba(2, 6, 23, 0.6);
+}
+
+.settings-icon-box {
+    border-color: #1e293b;
+    background-color: #1e293b;
+}
+
+.settings-icon {
+    color: #cbd5e1;
+}
+
+.settings-theme-switch {
+    border-color: #334155;
+    background-color: #0f172a;
+}
+
+.settings-theme-active {
+    background-color: #334155;
+    color: #ffffff;
+}
+
+.settings-theme-inactive {
+    color: #94a3b8;
+}
+
+.settings-theme-inactive:hover {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+html[data-theme="light"] .settings-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .settings-muted {
+    color: #64748b;
+}
+
+html[data-theme="light"] .settings-card {
+    border-color: #e2e8f0;
+    background-color: #ffffff;
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="light"] .settings-sub-card {
+    border-color: #e2e8f0;
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .settings-icon-box {
+    border-color: #e2e8f0;
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .settings-icon {
+    color: #475569;
+}
+
+html[data-theme="light"] .settings-theme-switch {
+    border-color: #cbd5e1;
+    background-color: #f1f5f9;
+}
+
+html[data-theme="light"] .settings-theme-active {
+    background-color: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+html[data-theme="light"] .settings-theme-inactive {
+    color: #64748b;
+}
+
+html[data-theme="light"] .settings-theme-inactive:hover {
+    color: #0f172a;
+}
+
+/* =========================================
+   ERROR PAGE - DARK
+========================================= */
+
+.error-page {
+    background-color: #020617;
+}
+
+.error-card {
+    border-color: #1e293b;
+    background-color: rgba(15, 23, 42, 0.8);
+}
+
+.error-title {
+    color: #ffffff;
+}
+
+.error-description {
+    color: #94a3b8;
+}
+
+.error-status {
+    border-color: rgba(59, 130, 246, 0.2);
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #60a5fa;
+}
+
+.error-secondary-button {
+    border-color: #334155;
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.error-secondary-button:hover {
+    border-color: #475569;
+    background-color: #334155;
+}
+
+
+/* =========================================
+   ERROR PAGE - LIGHT
+========================================= */
+
+html[data-theme="light"] .error-page {
+    background-color: #f8fafc;
+}
+
+html[data-theme="light"] .error-card {
+    border-color: #e2e8f0;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .error-title {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .error-description {
+    color: #64748b;
+}
+
+html[data-theme="light"] .error-status {
+    border-color: rgba(59, 130, 246, 0.2);
+    background-color: rgba(59, 130, 246, 0.08);
+    color: #2563eb;
+}
+
+html[data-theme="light"] .error-secondary-button {
+    border-color: #cbd5e1;
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+html[data-theme="light"] .error-secondary-button:hover {
+    border-color: #94a3b8;
+    background-color: #e2e8f0;
+    color: #0f172a;
+}

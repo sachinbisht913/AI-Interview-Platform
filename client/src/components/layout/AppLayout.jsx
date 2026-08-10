@@ -1,30 +1,45 @@
+// File: AppLayout.jsx
+
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import { useSidebar } from "../../context/SidebarContext";
 
 function AppLayout({ children }) {
+    const { collapsed } = useSidebar();
 
     return (
-
         <div className="min-h-screen bg-slate-950">
+            
+            <Sidebar />
 
-            <Navbar />
+            {/* Main Area */}
+            <div
+                className={`
+                    min-h-screen
+                    transition-all
+                    duration-500
+                    ease-in-out
 
-            <div className="flex">
+                    lg:ml-72
+                    ${collapsed ? "lg:ml-20" : ""}
+                `}
+            >
+                <Navbar />
 
-                <Sidebar />
-
-                <main className="flex-1 p-10 overflow-auto">
-
+                <main
+                    className="
+                        min-w-0
+                        overflow-x-hidden
+                        p-4
+                        sm:p-6
+                        lg:p-10
+                    "
+                >
                     {children}
-
                 </main>
-
             </div>
-
         </div>
-
     );
-
 }
 
 export default AppLayout;

@@ -1,6 +1,8 @@
 const db = require("../config/db");
 const fs = require("fs");
-
+const {
+    createNotification,
+} = require("../utils/notificationService");
 const { uploadToCloudinary } = require("./cloudinaryService");
 const { extractTextFromPDF } = require("./pdfService");
 const { analyzeResume } = require("./geminiService");
@@ -79,6 +81,15 @@ const uploadResumeService = async (file, userId) => {
 
         // 7. Commit Transaction
         await connection.commit();
+
+        await createNotification({
+            userId,
+            type: "resume_analysis",
+            title: "Resume Analysis Complete",
+            message:
+                "Your AI resume analysis is ready to view.",
+            link: `/resume-report/${resumeResult.insertId}`,
+        });
 
         return {
             resumeId: resumeResult.insertId,

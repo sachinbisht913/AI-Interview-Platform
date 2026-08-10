@@ -1,52 +1,51 @@
+// File: src/components/resume/UploadButton.jsx
+
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 
 function UploadButton({ loading, onClick }) {
 
     return (
 
         <motion.button
-
             whileHover={{
                 scale: 1.03,
             }}
-
             whileTap={{
-                scale: .98,
+                scale: 0.98,
             }}
-
             disabled={loading}
-
             onClick={onClick}
+            className="
+                resume-upload-button
+                mt-8
+                w-full
+                rounded-2xl
+                bg-gradient-to-r
+                from-blue-600
+                to-purple-600
+                py-3.5
+                text-base
+                font-semibold
+                text-white
+                shadow-xl
+                transition
 
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-4 rounded-2xl text-white font-semibold text-lg mt-10 shadow-xl"
+                disabled:cursor-not-allowed
+                disabled:opacity-60
 
+                sm:mt-10
+                sm:py-4
+                sm:text-lg
+            "
         >
 
-            <div className="flex justify-center gap-3">
-
-                <Sparkles />
-
-                {
-
-                    loading
-
-                        ?
-
-                        "AI is analyzing..."
-
-                        :
-
-                        "Analyze Resume"
-
-                }
-
-            </div>
+            {loading
+                ? "AI is analyzing..."
+                : "Analyze Resume"}
 
         </motion.button>
 
     );
-
 }
 
 export default UploadButton;

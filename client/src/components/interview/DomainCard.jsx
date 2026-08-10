@@ -1,5 +1,6 @@
-const domains = [
+// File: src/components/interview/DomainCard.jsx
 
+const domains = [
     "React",
     "Java",
     "JavaScript",
@@ -8,68 +9,97 @@ const domains = [
     "Operating System",
     "HR",
     "Frontend",
-    "Backend"
-
+    "Backend",
 ];
 
-function DomainCard({
-
-    domain,
-    setDomain,
-
-}) {
+function DomainCard({ domain, setDomain }) {
 
     return (
 
-        <div className="bg-slate-900 rounded-3xl p-8 border border-slate-800">
+        <div
+            className="
+                domain-card
+                rounded-3xl
+                border
+                border-slate-800
+                bg-slate-900
+                p-5
 
-            <h2 className="text-2xl font-bold text-white mb-6">
+                sm:p-6
 
+                lg:p-8
+            "
+        >
+
+            <h2
+                className="
+                    domain-card-title
+                    mb-5
+                    text-xl
+                    font-bold
+
+                    sm:text-2xl
+                "
+            >
                 Select Interview Domain
-
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
 
-                {
+            <div
+                className="
+                    grid
+                    grid-cols-1
+                    gap-3
 
-                    domains.map((item) => (
+                    sm:grid-cols-2
+                    sm:gap-4
+
+                    md:grid-cols-3
+
+                    lg:grid-cols-4
+                    lg:gap-5
+                "
+            >
+
+                {domains.map((item) => {
+
+                    const selected = domain === item;
+
+                    return (
 
                         <button
-
                             key={item}
-
+                            type="button"
                             onClick={() => setDomain(item)}
-
                             className={`
-                                p-5
+                                min-h-[52px]
                                 rounded-2xl
+                                px-4
+                                py-3
+                                text-sm
                                 font-semibold
                                 transition-all
-                                duration-300
+                                duration-200
+
                                 ${
-                                    domain === item
-                                        ? "bg-blue-600 text-white scale-105 shadow-lg shadow-blue-500/30"
-                                        : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                                    selected
+                                        ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
+                                        : "domain-option"
                                 }
                             `}
-
                         >
-
                             {item}
-
                         </button>
 
-                    ))
+                    );
 
-                }
+                })}
 
             </div>
 
         </div>
 
     );
-
 }
 
 export default DomainCard;

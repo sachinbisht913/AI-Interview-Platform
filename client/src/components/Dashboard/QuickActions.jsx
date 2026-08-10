@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 function QuickActions() {
+
     const navigate = useNavigate();
 
     const actions = [
@@ -48,26 +49,67 @@ function QuickActions() {
     ];
 
     return (
-        <section>
-            <div className="mb-6">
-                <h2 className="text-2xl font-bold text-white">
+
+        <section className="quick-actions space-y-6">
+
+            {/* Header */}
+
+            <div>
+
+                <h2
+                    className="
+                        quick-actions-title
+                        text-xl
+                        font-bold
+                        text-white
+
+                        sm:text-2xl
+                    "
+                >
                     Quick Actions
                 </h2>
 
-                <p className="mt-1 text-slate-400">
+
+                <p
+                    className="
+                        quick-actions-description
+                        mt-2
+                        text-sm
+                        text-slate-400
+
+                        sm:text-base
+                    "
+                >
                     Jump directly to the most important features.
                 </p>
+
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+
+            {/* Action Cards */}
+
+            <div
+                className="
+                    grid
+                    grid-cols-1
+                    gap-5
+
+                    sm:grid-cols-2
+                    xl:grid-cols-4
+                "
+            >
+
                 {actions.map((action) => {
+
                     const Icon = action.icon;
 
                     return (
+
                         <button
                             key={action.title}
                             onClick={() => navigate(action.path)}
                             className="
+                                quick-action-card
                                 group
                                 relative
                                 overflow-hidden
@@ -75,24 +117,28 @@ function QuickActions() {
                                 border
                                 border-slate-800
                                 bg-slate-900
-                                p-6
+                                p-5
                                 text-left
                                 transition-all
                                 duration-300
+
                                 hover:-translate-y-1
                                 hover:border-slate-700
                                 hover:shadow-xl
-                                hover:shadow-blue-500/10
+
+                                sm:p-6
                             "
                         >
+
                             {/* Background Glow */}
+
                             <div
                                 className={`
                                     absolute
                                     -top-10
                                     -right-10
-                                    h-32
-                                    w-32
+                                    h-28
+                                    w-28
                                     rounded-full
                                     bg-gradient-to-r
                                     ${action.color}
@@ -100,18 +146,22 @@ function QuickActions() {
                                     blur-3xl
                                     transition-all
                                     duration-500
+
                                     group-hover:opacity-20
                                 `}
                             />
 
+
                             <div className="relative z-10">
+
                                 {/* Icon */}
+
                                 <div
                                     className={`
-                                        mb-6
+                                        mb-5
                                         flex
-                                        h-14
-                                        w-14
+                                        h-12
+                                        w-12
                                         items-center
                                         justify-center
                                         rounded-2xl
@@ -120,37 +170,86 @@ function QuickActions() {
                                         shadow-lg
                                         transition-transform
                                         duration-300
+
                                         group-hover:scale-110
-                                        group-hover:rotate-6
+
+                                        sm:h-14
+                                        sm:w-14
                                     `}
                                 >
+
                                     <Icon
-                                        size={26}
+                                        size={22}
                                         className="text-white"
                                     />
+
                                 </div>
 
+
                                 {/* Title */}
-                                <h3 className="text-lg font-semibold text-white">
+
+                                <h3
+                                    className="
+                                        quick-action-title
+                                        text-lg
+                                        font-semibold
+                                        text-white
+                                    "
+                                >
                                     {action.title}
                                 </h3>
 
+
                                 {/* Description */}
-                                <p className="mt-3 text-sm leading-6 text-slate-400">
+
+                                <p
+                                    className="
+                                        quick-action-description
+                                        mt-3
+                                        text-sm
+                                        leading-6
+                                        text-slate-400
+                                    "
+                                >
                                     {action.description}
                                 </p>
 
+
                                 {/* Footer */}
-                                <div className="mt-6 flex items-center gap-2 font-medium text-blue-400 transition-all duration-300 group-hover:gap-3">
+
+                                <div
+                                    className="
+                                        mt-6
+                                        inline-flex
+                                        items-center
+                                        gap-2
+                                        text-sm
+                                        font-medium
+                                        text-blue-400
+                                        transition-all
+                                        duration-300
+
+                                        group-hover:gap-3
+                                    "
+                                >
                                     Get Started
-                                    <ArrowRight size={18} />
+
+                                    <ArrowRight size={16} />
+
                                 </div>
+
                             </div>
+
                         </button>
+
                     );
+
                 })}
+
             </div>
+
         </section>
+
     );
 }
 

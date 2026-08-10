@@ -1,63 +1,156 @@
-import { useEffect, useState } from "react";
-import { getHistory } from "../api/historyApi";
-import InterviewHistoryCard from "../components/interview/InterviewHistoryCard";
+// File: src/pages/InterviewHistory.jsx
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import HistoryHeader from "../components/history/HistoryHeader";
+import HistoryStats from "../components/history/HistoryStats";
+import HistoryFilters from "../components/history/HistoryFilters";
+import HistoryCard from "../components/history/HistoryCard";
+import EmptyHistory from "../components/history/EmptyHistory";
+
+import { fetchHistory } from "../redux/historySlice";
 
 function InterviewHistory() {
 
-    const [history, setHistory] = useState([]);
+    const dispatch = useDispatch();
+
+    const { interviews, loading } = useSelector(
+        (state) => state.history
+    );
 
     useEffect(() => {
 
-        fetchHistory();
+        dispatch(fetchHistory());
 
-    }, []);
+    }, [dispatch]);
 
-    const fetchHistory = async () => {
 
-        const { data } = await getHistory();
+    if (loading) {
 
-        setHistory(data.interviews);
+        return (
 
-    };
+            <div
+                className="
+                    history-loading
+                    min-h-screen
+                    px-4
+                    flex
+                    items-center
+                    justify-center
+                    transition-colors
+                    duration-300
+                "
+            >
+
+                <p
+                    className="
+                        history-loading-text
+                        text-sm
+
+                        sm:text-base
+                    "
+                >
+                    Loading...
+                </p>
+
+            </div>
+
+        );
+
+    }
+
 
     return (
 
-        <div className="min-h-screen bg-slate-950">
+        <main
+            className="
+                interview-history-page
+                min-h-screen
+                transition-colors
+                duration-300
+            "
+        >
 
-            <div className="max-w-6xl mx-auto py-12 px-6">
+            <div
+                className="
+                    mx-auto
+                    w-full
+                    max-w-7xl
+                    px-4
+                    py-6
 
-                <h1 className="text-4xl font-bold text-white">
+                    sm:px-6
+                    sm:py-8
 
-                    Interview History
+                    lg:px-8
+                    lg:py-10
+                "
+            >
 
-                </h1>
+                <div
+                    className="
+                        space-y-6
 
-                <div className="space-y-6 mt-10">
+                        sm:space-y-8
+                    "
+                >
 
-                    {
+                    {/* Header */}
 
-                        history.map((item) => (
+                    <HistoryHeader />
 
-                            <InterviewHistoryCard
 
-                                key={item.id}
+                    {/* Statistics */}
 
-                                interview={item}
+                    <HistoryStats
+                        interviews={interviews}
+                    />
 
-                            />
 
-                        ))
+                    {/* Filters */}
 
-                    }
+                    <HistoryFilters />
+
+
+                    {/* Interview History */}
+
+                    {interviews.length === 0 ? (
+
+                        <EmptyHistory />
+
+                    ) : (
+
+                        <div
+                            className="
+                                grid
+                                grid-cols-1
+                                gap-4
+
+                                sm:gap-6
+                            "
+                        >
+
+                            {interviews.map((item) => (
+
+                                <HistoryCard
+                                    key={item.id}
+                                    interview={item}
+                                />
+
+                            ))}
+
+                        </div>
+
+                    )}
 
                 </div>
 
             </div>
 
-        </div>
+        </main>
 
     );
-
 }
 
 export default InterviewHistory;

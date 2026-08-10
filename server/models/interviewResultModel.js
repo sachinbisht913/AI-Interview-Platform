@@ -15,6 +15,32 @@ const getAnswers = async (interviewId) => {
     return rows;
 };
 
+// ⭐ NEW
+const updateAnswerEvaluation = async (
+    answerId,
+    score,
+    feedback
+) => {
+
+    await db.execute(
+        `
+        UPDATE interview_answers
+        SET
+            score = ?,
+            feedback = ?
+        WHERE id = ?
+        `,
+        [
+            score,
+            feedback,
+            answerId,
+        ]
+    );
+
+};
+
+
+
 const updateInterviewResult = async (
 
     interviewId,
@@ -48,6 +74,8 @@ const updateInterviewResult = async (
 module.exports = {
 
     getAnswers,
+
+    updateAnswerEvaluation,   
 
     updateInterviewResult,
 
