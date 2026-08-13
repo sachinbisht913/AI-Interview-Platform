@@ -53,39 +53,33 @@ const evaluateInterviewService = async (req) => {
     weaknesses.push(...item.evaluation.weaknesses);
     recommendedTopics.push(...item.evaluation.recommendedTopics);
   });
-
+  if (results.length === 0) {
+    throw new Error("No interview answers found.");
+}
   const totalScore = results.reduce(
     (sum, item) => sum + Number(item.evaluation.score),
     0
   );
 
-  const overallScore = Math.round(
-    totalScore / results.length
-  );
+  const averageScore =
+    totalScore / results.length;
+
+const overallScore = Math.round(
+    averageScore * 10
+);
 
   const overallFeedback =
-    `Overall interview score: ${overallScore}/10`;
+    `Overall interview score: ${overallScore}%`;
 
   // ===========================
   // Category Scores
   // ===========================
 
-  const technicalScore = overallScore;
 
-  const communicationScore = Math.min(
-    10,
-    overallScore + 1
-  );
-
-  const confidenceScore = Math.max(
-    1,
-    overallScore - 1
-  );
-
-  const problemSolvingScore = Math.max(
-    1,
-    overallScore
-  );
+const technicalScore = overallScore;
+const communicationScore = overallScore;
+const confidenceScore = overallScore;
+const problemSolvingScore = overallScore;
 
   // ===========================
   // AI Summary
@@ -93,23 +87,22 @@ const evaluateInterviewService = async (req) => {
 
   let summary = "";
 
-  if (overallScore >= 9) {
+  if (overallScore >= 90) {
 
     summary =
-      "Outstanding interview performance. You demonstrated excellent technical knowledge, confident communication, and strong problem-solving skills.";
+        "Outstanding interview performance. You demonstrated excellent technical knowledge, confident communication, and strong problem-solving skills.";
 
-  } else if (overallScore >= 7) {
-
-    summary =
-      "Good interview performance. You have a solid understanding of the concepts, but improving weak areas will make you more interview-ready.";
-
-  } else {
+} else if (overallScore >= 70) {
 
     summary =
-      "Your interview showed potential, but several concepts need additional practice. Focus on the recommended learning path and continue taking mock interviews.";
+        "Good interview performance. You have a solid understanding of the concepts, but improving weak areas will make you more interview-ready.";
 
-  }
+} else {
 
+    summary =
+        "Your interview showed potential, but several concepts need additional practice. Focus on the recommended learning path and continue taking mock interviews.";
+
+}
   await updateInterviewResult(
     interviewId,
     overallScore,

@@ -18,9 +18,19 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 const resumeHistoryRoutes = require("./routes/resumeHistoryRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
+const codingProblemRoutes =
+    require("./routes/codingProblemRoutes");
+const codingRoutes = require("./routes/codingRoutes");
+const codingSubmissionRoutes =
+    require("./routes/codingSubmissionRoutes");
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+      origin: process.env.FRONTEND_URL,
+      credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
@@ -32,6 +42,19 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/resume-history", resumeHistoryRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use(
+  "/api/coding-problems",
+  codingProblemRoutes
+);
+app.use(
+  "/api/coding",
+  codingRoutes
+);
+
+app.use(
+  "/api/coding-submissions",
+  codingSubmissionRoutes
+);
 
 // Test Route
 app.get("/", (req, res) => {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Bell, CheckCheck, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useTheme } from "../../context/ThemeContext";
 
 import {
     getNotifications,
@@ -10,6 +11,7 @@ import {
 } from "../../api/notificationApi";
 
 function NotificationButton() {
+    const { theme } = useTheme();
 
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
@@ -407,16 +409,19 @@ function NotificationButton() {
 
                         <div>
 
-                            <h2
-                                className="
-                                    text-base
-                                    font-semibold
-                                    text-white
-                                    light:text-slate-900
-                                "
-                            >
-                                Notifications
-                            </h2>
+                        <h2
+    className={`
+        text-base
+        font-semibold
+        ${
+            theme === "light"
+                ? "text-slate-900"
+                : "text-white"
+        }
+    `}
+>
+    Notifications
+</h2>
 
                             {unreadCount > 0 && (
 

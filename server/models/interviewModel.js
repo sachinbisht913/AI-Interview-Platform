@@ -7,7 +7,7 @@ const createInterview = async (
     totalQuestions
 ) => {
 
-    console.log("Creating interview...");
+ 
 
     const [result] = await db.execute(
         `

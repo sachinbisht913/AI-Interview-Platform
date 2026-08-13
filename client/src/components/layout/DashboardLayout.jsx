@@ -58,19 +58,21 @@ function DashboardLayout() {
             {/* Main Content */}
 
             <div
-                className={`
-                    flex
-                    h-screen
-                    flex-col
-                    transition-all
-                    duration-500
-                    ease-in-out
-
-                    ml-0
-
-                    lg:ml-72
-                    ${collapsed ? "lg:ml-20" : ""}
-                `}
+               className={`
+               flex
+               h-screen
+               flex-col
+               transition-all
+               duration-500
+               ease-in-out
+           
+               ml-0
+           
+               ${collapsed
+                   ? "lg:ml-20"
+                   : "lg:ml-72"
+               }
+           `}
             >
 
                 {/* Navbar */}

@@ -83,7 +83,7 @@ function Logo() {
                     
                     "
                 >
-                    AI Interview
+                    PrepAI
                 </h1>
 
 

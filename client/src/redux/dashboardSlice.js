@@ -1,22 +1,13 @@
 // File: src/redux/dashboardSlice.js
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const API_URL = "http://localhost:5000/api/dashboard";
-
+import API from "../api/axios";
 // Fetch Dashboard Data
 export const fetchDashboard = createAsyncThunk(
     "dashboard/fetchDashboard",
     async (_, { rejectWithValue }) => {
         try {
-            const token = localStorage.getItem("token");
-
-            const response = await axios.get(API_URL, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = await API.get("/dashboard");
 
             return response.data.dashboard;
         } catch (error) {

@@ -239,36 +239,38 @@ function InterviewHero({
                     "
                 >
 
-                    <div
-                        className="
-                            interview-hero-score
-                            relative
-                            flex
-                            h-44
-                            w-44
-                            items-center
-                            justify-center
-                            rounded-full
-                            border-8
-                            border-blue-500/20
-                            bg-slate-900
-                            shadow-2xl
+<div
+    className="
+        interview-hero-score
+        relative
+        flex
+        h-44
+        w-44
+        items-center
+        justify-center
+        rounded-full
+        border-8
+        border-blue-500/20
+        bg-slate-900
+        light:bg-white
+        shadow-2xl
 
-                            sm:h-52
-                            sm:w-52
-                        "
-                    >
+        sm:h-52
+        sm:w-52
+    "
+>
 
-                        <div
-                            className="
-                                interview-hero-score-ring
-                                absolute
-                                inset-3
-                                rounded-full
-                                border
-                                border-slate-700
-                            "
-                        />
+<div
+    className="
+        interview-hero-score-ring
+        absolute
+        inset-3
+        rounded-full
+        border
+        border-slate-700
+        light:border-slate-200
+    "
+/>
 
 
                         <div className="relative text-center">
@@ -285,12 +287,13 @@ function InterviewHero({
 
                             <h2
                                 className="
-                                    mt-3
-                                    text-4xl
-                                    font-bold
-                                    text-white
-
-                                    sm:text-5xl
+                                mt-3
+                                text-4xl
+                                font-bold
+                                text-white
+                                light:text-slate-900
+                        
+                                sm:text-5xl
                                 "
                             >
                                 {overallScore}%

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import HistoryHeader from "../components/history/HistoryHeader";
 import HistoryStats from "../components/history/HistoryStats";
-import HistoryFilters from "../components/history/HistoryFilters";
+// import HistoryFilters from "../components/history/HistoryFilters";
 import HistoryCard from "../components/history/HistoryCard";
 import EmptyHistory from "../components/history/EmptyHistory";
 
@@ -110,7 +110,7 @@ function InterviewHistory() {
 
                     {/* Filters */}
 
-                    <HistoryFilters />
+                    {/* <HistoryFilters /> */}
 
 
                     {/* Interview History */}

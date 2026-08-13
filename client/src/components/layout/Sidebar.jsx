@@ -238,6 +238,11 @@ function Sidebar() {
                             icon={FolderOpen}
                             title="Resume History"
                         />
+                        <SidebarItem
+                            to="/coding-history"
+                            icon={Code2}
+                            title="Coding History"
+                        />
 
                     </nav>
 

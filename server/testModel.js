@@ -10,7 +10,7 @@ async function test() {
 
     const result = await model.generateContent("Say Hello");
 
-    console.log(result.response.text());
+   
 }
 
 test().catch(console.error);

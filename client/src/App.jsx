@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
-
+import { Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -17,7 +17,7 @@ import Analytics from "./pages/Analytics";
 import InterviewHistory from "./pages/InterviewHistory";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import ResumeHistory from "./pages/ResumeHistory";
-import ResumeReport from  "./pages/ResumeReport"
+import ResumeReport from "./pages/ResumeReport";
 import NotFound from "./pages/NotFound";
 import ServerError from "./pages/ServerError";
 import Profile from "./pages/Profile";
@@ -25,120 +25,62 @@ import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Settings from "./pages/Settings";
+import CodingRound from "./pages/CodingRound";
 
-
+import CodingHistory from "./pages/CodingHistory";
 
 function App() {
   return (
     <>
       <div>
         <Routes>
-        
-       
-    <Route
-        path="/login"
-        element={<Login />}
-    />
-    <Route
-        path="/signup"
-        element={<Signup />}
-    />
-        <Route
-    element={
-        <ProtectedRoute>
-            <DashboardLayout />
-        </ProtectedRoute>
-    }
->
+          <Route path="/" element={<Navigate to="/login" replace />} />
 
-    <Route
-        path="/dashboard"
-        element={<Dashboard />}
-    />
-     <Route
-        path="/resume"
-        element={<Resume />}
-    />
-    <Route
-    path="/settings"
-    element={<Settings />}
-/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/coding-history" element={<CodingHistory />} />
+            <Route path="/coding-round" element={<CodingRound />} />
 
-    
-    
+            <Route path="/resume-analysis" element={<ResumeAnalysis />} />
 
-    <Route
-        path="/resume-analysis"
-        element={<ResumeAnalysis />}
-    />
+            <Route path="/mock-interview" element={<MockInterview />} />
 
-    <Route
-        path="/mock-interview"
-        element={<MockInterview />}
-    />
+            <Route path="/interview-session" element={<InterviewSession />} />
 
-    <Route
-        path="/interview-session"
-        element={<InterviewSession />}
-    />
+            <Route path="/interview-result" element={<InterviewResult />} />
 
-    <Route
-        path="/interview-result"
-        element={<InterviewResult />}
-    />
+            <Route path="/interview-report/:id" element={<InterviewReport />} />
 
-    <Route
-        path="/interview-report/:id"
-        element={<InterviewReport />}
-    />
+            <Route path="/analytics" element={<Analytics />} />
 
-    <Route
-        path="/analytics"
-        element={<Analytics />}
-    />
+            <Route path="/interview-history" element={<InterviewHistory />} />
+            <Route path="/profile" element={<Profile />} />
 
-    <Route
-        path="/interview-history"
-        element={<InterviewHistory />}
-    />
-    <Route
-    path="/profile"
-    element={<Profile />}
-/>
+            <Route path="/resume-history" element={<ResumeHistory />} />
 
-<Route
-    path="/resume-history"
-    element={<ResumeHistory />}
-/>
+            <Route path="/resume-report/:id" element={<ResumeReport />} />
+          </Route>
 
-<Route
-    path="/resume-report/:id"
-    element={<ResumeReport />}
-/>
+          <Route path="/500" element={<ServerError />} />
 
-</Route>
+          {/* 404 - MUST BE LAST */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
-<Route
-        path="/500"
-        element={<ServerError />}
-    />
+<Route path="/reset-password/:token" element={<ResetPassword />} />
 
-    {/* 404 - MUST BE LAST */}
+          <Route path="*" element={<NotFound />} />
 
-    <Route
-        path="*"
-        element={<NotFound />}
-    />
 
-<Route
-    path="/forgot-password"
-    element={<ForgotPassword />}
-/>
-
-<Route
-    path="/reset-password/:token"
-    element={<ResetPassword />}
-/>
         </Routes>
       </div>
     </>

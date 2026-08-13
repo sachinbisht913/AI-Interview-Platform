@@ -1,4 +1,7 @@
 const db = require("../config/db");
+const {
+  getUserCodingSolvedCount,
+} = require("../models/codingSubmissionModel");
 
 const getDashboard = async (req, res) => {
   try {
@@ -65,12 +68,8 @@ const getDashboard = async (req, res) => {
     // Later this will become Coding Solved
     // ===========================
 
-    const [resumeCount] = await db.query(
-      `SELECT COUNT(*) AS resumeCount
-             FROM resumes
-             WHERE user_id = ?`,
-      [userId]
-    );
+    const codingSolved =
+    await getUserCodingSolvedCount(userId);
 
     // ===========================
     // Performance Chart
@@ -214,7 +213,7 @@ const getDashboard = async (req, res) => {
 
         atsScore: atsScore.length > 0 ? atsScore[0].ats_score : 0,
 
-        codingSolved: resumeCount[0].resumeCount || 0,
+        codingSolved,
       },
 
       performance,

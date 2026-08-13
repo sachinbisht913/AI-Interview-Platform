@@ -1,19 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const API_URL = "http://localhost:5000/api/history";
+import API from "../api/axios";
 
 export const fetchHistory = createAsyncThunk(
     "history/fetchHistory",
     async (_, { rejectWithValue }) => {
         try {
-            const token = localStorage.getItem("token");
-
-            const response = await axios.get(API_URL, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = await API.get("/history");
 
             return response.data.interviews;
         } catch (error) {

@@ -39,7 +39,7 @@ function LoadingOverlay() {
 
                 {/* Brain Animation */}
 
-                <motion.div
+                {/* <motion.div
                     animate={{
                         rotate: 360,
                     }}
@@ -53,6 +53,7 @@ function LoadingOverlay() {
                         flex
                         h-16
                         w-16
+                        
                         items-center
                         justify-center
                         rounded-2xl
@@ -67,7 +68,7 @@ function LoadingOverlay() {
                         className="text-white"
                     />
 
-                </motion.div>
+                </motion.div> */}
 
 
                 {/* Heading */}
@@ -84,7 +85,7 @@ function LoadingOverlay() {
                         sm:text-3xl
                     "
                 >
-                    AI is analyzing...
+                    analyzing...
                 </h1>
 
 

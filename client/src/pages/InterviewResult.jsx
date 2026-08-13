@@ -87,18 +87,15 @@ setSummary(data.summary);
   return (
     <div
     className="
-        interview-result-page
-        min-h-screen
-        bg-slate-950
-        px-4
-        py-8
+    interview-result-page
+    min-h-screen
+    bg-slate-950
+    text-white
+    px-4
+    py-8
 
-        sm:px-6
-        sm:py-10
-
-        lg:px-8
-        lg:py-12
-    "
+    light:bg-slate-50
+    light:text-slate-900"
 >
       <div className="max-w-6xl mx-auto px-6">
       <InterviewHero
