@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import WelcomeCard from "../components/dashboard/WelcomeCard";
-import StatsGrid from "../components/dashboard/StatsGrid";
-import PerformanceChart from "../components/dashboard/PerformanceChart";
-import RecentInterviews from "../components/dashboard/RecentInterviews";
-import RecommendationCard from "../components/dashboard/RecommendationCard";
-import QuickActions from "../components/dashboard/QuickActions";
+import WelcomeCard from "../components/Dashboard/WelcomeCard";
+import StatsGrid from "../components/Dashboard/StatsGrid";
+import PerformanceChart from "../components/Dashboard/PerformanceChart";
+import RecentInterviews from "../components/Dashboard/RecentInterviews";
+import RecommendationCard from "../components/Dashboard/RecommendationCard";
+import QuickActions from "../components/Dashboard/QuickActions";
 
 import { fetchDashboard } from "../redux/dashboardSlice";
 
