@@ -2,6 +2,53 @@ AI Interview Platform
 
 An AI-powered interview preparation platform designed to help candidates prepare for technical interviews through AI mock interviews, resume analysis, coding rounds, performance analytics, interview history, and personalized recommendations.
 
+
+## 🌐 Live Demo
+
+👉 [Try AI Interview Platform](https://ai-interview-platform-8jme.onrender.com)
+
+> The application is deployed using Render. The free backend instance may
+> take a few seconds to wake up after a period of inactivity.
+
+---
+
+
+## 📸 Screenshots
+
+### 🔐 Login
+
+![Login](screenshots/login.png)
+
+### 📝 Sign Up
+
+![Sign Up](screenshots/signup.png)
+
+### 📊 Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### 🤖 Mock Interview
+
+![Mock Interview](screenshots/mock-interview.png)
+
+### 🧠 AI Interview Evaluation
+
+![AI Interview Evaluation](screenshots/interview-result.png)
+
+### 📄 Resume Analyzer
+
+![Resume Analyzer](screenshots/resume_analyzer.png)
+
+### 📈 Analytics
+
+![Analytics](screenshots/analytics.png)
+
+### 💻 Coding Round
+
+![Coding Round](screenshots/coding-round.png)
+
+---
+
 🚀 Features
 
 🔐 Authentication
