@@ -19,57 +19,39 @@ function Resume() {
 
 
     const handleUpload = async () => {
-
         if (!file) {
             return toast.error("Select PDF");
         }
-
+    
         try {
-
             setLoading(true);
-
+    
             const formData = new FormData();
-
             formData.append("resume", file);
-
+    
             const response = await uploadResume(formData);
-
+    
+            console.log("UPLOAD RESPONSE:", response.data);
+    
             navigate("/resume-analysis", {
                 state: {
                     analysis: response.data.data.analysis,
                 },
             });
-
-        }
-
-    //  catch (error) {
-
-    //     console.error("RESUME UPLOAD ERROR:", error);
     
-    //     console.error("Response:", error.response);
+        } catch (error) {
+            console.error("RESUME UPLOAD ERROR:", error);
+            console.error("STATUS:", error.response?.status);
+            console.error("RESPONSE:", error.response?.data);
     
-    //     console.error("Response data:", error.response?.data);
+            toast.error(
+                error.response?.data?.message ||
+                "Failed to upload resume"
+            );
     
-    //     toast.error(
-    //         error.response?.data?.message ||
-    //         "Failed to upload resume."
-    //     );
-    
-    // } finally {
-    
-    //     setLoading(false);
-    
-    // }
-         catch (error) {
-
-            toast.error("Failed to upload resume.");
-
         } finally {
-
             setLoading(false);
-
         }
-
     };
 
 

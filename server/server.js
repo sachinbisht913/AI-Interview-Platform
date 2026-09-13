@@ -75,6 +75,15 @@ app.use(
   codingSubmissionRoutes
 );
 
+app.use((err, req, res, next) => {
+  console.error("GLOBAL ERROR:", err);
+
+  res.status(500).json({
+      success: false,
+      message: err.message || "Something went wrong",
+  });
+});
+
 // Test Route
 app.get("/", (req, res) => {
   res.json({

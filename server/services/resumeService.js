@@ -1,44 +1,71 @@
 const db = require("../config/db");
 const fs = require("fs");
+
 const {
     createNotification,
 } = require("../utils/notificationService");
+
 const { uploadToCloudinary } = require("./cloudinaryService");
 const { extractTextFromPDF } = require("./pdfService");
 const { analyzeResume } = require("./geminiService");
 
 const uploadResumeService = async (file, userId) => {
-
     const connection = await db.getConnection();
 
     try {
+        console.log("========== RESUME UPLOAD START ==========");
+        console.log("User ID:", userId);
+        console.log("File:", file);
 
-        // Start Transaction
         await connection.beginTransaction();
+        console.log("1. Transaction started");
 
-        // 1. Extract Text
+        // 1. Extract PDF text
+        console.log("2. Extracting PDF text...");
         const extractedText = await extractTextFromPDF(file.path);
 
-        // 2. Analyze Resume using Gemini
+        console.log(
+            "PDF extracted successfully. Text length:",
+            extractedText?.length
+        );
+
+        // 2. Gemini analysis
+        console.log("3. Sending resume to Gemini...");
+
         const analysisText = await analyzeResume(extractedText);
 
-        // Remove ```json ``` if Gemini returns markdown
+        console.log("Gemini response received");
+
         const cleanAnalysis = analysisText
             .replace(/```json/g, "")
             .replace(/```/g, "")
             .trim();
 
+        console.log("4. Parsing Gemini JSON...");
+
         const analysis = JSON.parse(cleanAnalysis);
 
-        // 3. Upload PDF to Cloudinary
+        console.log("Gemini JSON parsed successfully");
+
+        // 3. Cloudinary
+        console.log("5. Uploading PDF to Cloudinary...");
+
         const cloudinaryResponse = await uploadToCloudinary(file.path);
 
-        // 4. Delete Local File
+        console.log(
+            "Cloudinary upload successful:",
+            cloudinaryResponse.secure_url
+        );
+
+        // 4. Delete local file
         if (fs.existsSync(file.path)) {
             fs.unlinkSync(file.path);
+            console.log("6. Local file deleted");
         }
 
-        // 5. Save Resume
+        // 5. Save resume
+        console.log("7. Saving resume to database...");
+
         const [resumeResult] = await connection.query(
             `INSERT INTO resumes
             (user_id, file_name, file_url, extracted_text)
@@ -51,7 +78,14 @@ const uploadResumeService = async (file, userId) => {
             ]
         );
 
-        // 6. Save AI Analysis
+        console.log(
+            "Resume saved. ID:",
+            resumeResult.insertId
+        );
+
+        // 6. Save analysis
+        console.log("8. Saving analysis to database...");
+
         await connection.query(
             `INSERT INTO resume_analysis
             (
@@ -79,17 +113,37 @@ const uploadResumeService = async (file, userId) => {
             ]
         );
 
-        // 7. Commit Transaction
+        console.log("Analysis saved successfully");
+
+        // 7. Commit
         await connection.commit();
 
-        await createNotification({
-            userId,
-            type: "resume_analysis",
-            title: "Resume Analysis Complete",
-            message:
-                "Your AI resume analysis is ready to view.",
-            link: `/resume-report/${resumeResult.insertId}`,
-        });
+        console.log("9. Transaction committed");
+
+        // 8. Notification
+        try {
+            console.log("10. Creating notification...");
+
+            await createNotification({
+                userId,
+                type: "resume_analysis",
+                title: "Resume Analysis Complete",
+                message: "Your AI resume analysis is ready to view.",
+                link: `/resume-report/${resumeResult.insertId}`,
+            });
+
+            console.log("Notification created successfully");
+
+        } catch (notificationError) {
+            console.error(
+                "NOTIFICATION ERROR:",
+                notificationError
+            );
+
+            // Don't fail resume upload because notification failed
+        }
+
+        console.log("========== RESUME UPLOAD SUCCESS ==========");
 
         return {
             resumeId: resumeResult.insertId,
@@ -100,20 +154,26 @@ const uploadResumeService = async (file, userId) => {
 
     } catch (error) {
 
-        // Rollback Transaction
-        await connection.rollback();
+        console.error("========== RESUME UPLOAD ERROR ==========");
+        console.error(error);
+        console.error("Error message:", error.message);
+        console.error("Error stack:", error.stack);
 
-        // Delete Local File if it still exists
-        if (file && fs.existsSync(file.path)) {
+        try {
+            await connection.rollback();
+        } catch (rollbackError) {
+            console.error("Rollback error:", rollbackError);
+        }
+
+        if (file && file.path && fs.existsSync(file.path)) {
             fs.unlinkSync(file.path);
+            console.log("Local file deleted after error");
         }
 
         throw error;
 
     } finally {
-
         connection.release();
-
     }
 };
 
