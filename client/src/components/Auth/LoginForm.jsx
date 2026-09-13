@@ -50,7 +50,12 @@ function LoginForm() {
 
             navigate("/dashboard");
         } catch (error) {
-            toast.error("Login Failed");
+            console.error("Login error:", error);
+        
+            toast.error(
+                error.response?.data?.message ||
+                "Login failed. Please try again."
+            );
         }
     };
 

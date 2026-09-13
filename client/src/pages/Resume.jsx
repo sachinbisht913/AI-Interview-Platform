@@ -43,12 +43,11 @@ function Resume() {
             console.error("RESUME UPLOAD ERROR:", error);
             console.error("STATUS:", error.response?.status);
             console.error("RESPONSE:", error.response?.data);
-    
+        
             toast.error(
                 error.response?.data?.message ||
-                "Failed to upload resume"
+                "Unable to analyze your resume right now. Please try again."
             );
-    
         } finally {
             setLoading(false);
         }
