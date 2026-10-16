@@ -81,41 +81,7 @@ function AnalyticsHero({ totalInterviews = 0 }) {
 
                 <div className="min-w-0 space-y-4 sm:space-y-5">
 
-                    {/* Badge */}
-
-                    <div
-                        className="
-                            inline-flex
-                            max-w-full
-                            items-center
-                            gap-2
-                            rounded-full
-                            border
-                            border-blue-500/20
-                            bg-blue-500/10
-                            px-3
-                            py-2
-
-                            sm:px-4
-                        "
-                    >
-
-                        <Sparkles
-                            size={16}
-                            className="shrink-0 text-blue-400"
-                        />
-
-                        <span className="
-                            text-xs
-                            font-medium
-                            text-blue-300
-
-                            sm:text-sm
-                        ">
-                            AI Performance Analytics
-                        </span>
-
-                    </div>
+                  
 
 
                     {/* Heading */}

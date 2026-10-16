@@ -136,19 +136,15 @@ function AIInsights({ analytics }) {
                             items-center
                             justify-center
                             rounded-2xl
-                            bg-gradient-to-r
-                            from-blue-600
-                            to-violet-600
+                            bg-blue-600
+                            
 
                             sm:h-14
                             sm:w-14
                         "
                     >
 
-                        <BrainCircuit
-                            className="text-white"
-                            size={22}
-                        />
+                       AI
 
                     </div>
 

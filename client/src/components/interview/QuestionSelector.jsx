@@ -73,7 +73,7 @@ function QuestionSelector({
 
                                 ${
                                     selected
-                                        ? "bg-purple-600 text-white shadow-lg shadow-purple-500/20"
+                                        ? "bg-blue-600 text-white shadow-lg "
                                         : "question-option"
                                 }
                             `}

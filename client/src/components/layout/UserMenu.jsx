@@ -98,9 +98,8 @@ function UserMenu() {
                         items-center
                         justify-center
                         rounded-full
-                        bg-gradient-to-r
-                        from-blue-500
-                        to-violet-600
+                        bg-blue-500
+                
                         text-sm
                         font-bold
                         text-white

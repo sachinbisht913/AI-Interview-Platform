@@ -67,9 +67,8 @@ function HistoryHeader() {
                         items-center
                         justify-center
                         rounded-2xl
-                        bg-gradient-to-r
-                        from-blue-500
-                        to-violet-600
+                        bg-blue-500
+                    
 
                         sm:h-16
                         sm:w-16

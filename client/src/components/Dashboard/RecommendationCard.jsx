@@ -109,19 +109,15 @@ function RecommendationCard({ recommendations = [] }) {
                             items-center
                             justify-center
                             rounded-2xl
-                            bg-gradient-to-r
-                            from-blue-500
-                            to-violet-600
+                            bg-blue-500
+                        
 
                             sm:h-14
                             sm:w-14
                         "
                     >
 
-                        <BrainCircuit
-                            size={24}
-                            className="text-white"
-                        />
+                       <span>AI</span>
 
                     </div>
 
@@ -307,10 +303,7 @@ function RecommendationCard({ recommendations = [] }) {
 
                             <div className="flex items-center gap-2">
 
-                                <Sparkles
-                                    size={18}
-                                    className="text-blue-400"
-                                />
+                               
 
                                 <h3
                                     className="
@@ -359,9 +352,8 @@ function RecommendationCard({ recommendations = [] }) {
                         justify-center
                         gap-2
                         rounded-2xl
-                        bg-gradient-to-r
-                        from-blue-600
-                        to-violet-600
+                        bg-blue-600
+                       
                         px-5
                         py-3.5
                         text-sm

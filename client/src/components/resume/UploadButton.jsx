@@ -20,9 +20,7 @@ function UploadButton({ loading, onClick }) {
                 mt-8
                 w-full
                 rounded-2xl
-                bg-gradient-to-r
-                from-blue-600
-                to-purple-600
+                bg-blue-600
                 py-3.5
                 text-base
                 font-semibold

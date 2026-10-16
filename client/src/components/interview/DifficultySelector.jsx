@@ -77,7 +77,7 @@ function DifficultySelector({
 
                                 ${
                                     selected
-                                        ? "bg-green-600 text-white shadow-lg shadow-green-500/20"
+                                        ? "bg-blue-600 text-white shadow-lg "
                                         : "difficulty-option"
                                 }
                             `}

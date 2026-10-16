@@ -19,7 +19,7 @@ function QuickActions() {
             description:
                 "Upload your resume and receive an AI-powered ATS analysis.",
             icon: FileText,
-            color: "from-blue-500 to-cyan-500",
+            color: "from-blue-500 to-blue-500",
             path: "/resume-analyzer",
         },
         {
@@ -27,7 +27,7 @@ function QuickActions() {
             description:
                 "Practice with AI-generated interview questions and feedback.",
             icon: Mic,
-            color: "from-violet-500 to-fuchsia-500",
+            color: "from-violet-500 to-violet-500",
             path: "/mock-interview",
         },
         {
@@ -35,7 +35,7 @@ function QuickActions() {
             description:
                 "Solve coding challenges to prepare for technical interviews.",
             icon: Code2,
-            color: "from-orange-500 to-red-500",
+            color: "from-orange-500 to-orange-500",
             path: "/coding-round",
         },
         {
@@ -43,7 +43,7 @@ function QuickActions() {
             description:
                 "Track your interview progress and overall performance.",
             icon: BarChart3,
-            color: "from-emerald-500 to-green-500",
+            color: "from-emerald-500 to-emerald-500",
             path: "/analytics",
         },
     ];

@@ -94,7 +94,7 @@ function HistoryCard({ interview }) {
                                 sm:text-base
                             "
                         >
-                            AI Mock Interview
+                            Mock Interview
                         </p>
                     </div>
 
@@ -261,9 +261,8 @@ function HistoryCard({ interview }) {
                                 justify-center
                                 gap-2
                                 rounded-xl
-                                bg-gradient-to-r
-                                from-blue-600
-                                to-violet-600
+                                bg-blue-600
+                           
                                 px-5
                                 py-3
                                 text-sm

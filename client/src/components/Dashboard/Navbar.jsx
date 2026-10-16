@@ -25,13 +25,7 @@ function Navbar() {
           <FaUserCircle className="text-4xl text-blue-400" />
 
           <div>
-            <h3 className="text-white font-semibold">
-              Sachin
-            </h3>
-
-            <p className="text-slate-400 text-sm">
-              MCA Student
-            </p>
+           
           </div>
 
         </div>

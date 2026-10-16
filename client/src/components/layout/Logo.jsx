@@ -31,27 +31,6 @@ function Logo() {
 
             {/* Logo Icon */}
 
-            <div
-                className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-gradient-to-r
-                    from-blue-500
-                    to-violet-600
-                "
-            >
-
-                <BrainCircuit
-                    size={22}
-                    className="text-white"
-                />
-
-            </div>
 
 
             {/* Logo Text */}

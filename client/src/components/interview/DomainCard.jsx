@@ -83,7 +83,7 @@ function DomainCard({ domain, setDomain }) {
 
                                 ${
                                     selected
-                                        ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
+                                        ? "bg-blue-600 text-white shadow-lg "
                                         : "domain-option"
                                 }
                             `}

@@ -8,7 +8,6 @@ import {
     Menu,
 } from "lucide-react";
 
-import SearchBar from "./SearchBar";
 import NotificationButton from "./NotificationButton";
 import UserMenu from "./UserMenu";
 
@@ -255,7 +254,7 @@ function TopNavbar() {
 
                 <div className="w-full max-w-xl">
 
-                    <SearchBar />
+                    
 
                 </div>
 

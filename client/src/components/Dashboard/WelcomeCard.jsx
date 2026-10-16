@@ -70,40 +70,7 @@ function WelcomeCard({ user, summary }) {
 
                     {/* Platform Badge */}
 
-                    <div
-                        className="
-                            inline-flex
-                            items-center
-                            gap-2
-                            rounded-full
-
-                            border
-                            border-blue-500/20
-                            bg-blue-500/10
-
-                            px-4
-                            py-2
-                        "
-                    >
-
-                        <Sparkles
-                            size={16}
-                            className="text-blue-400"
-                        />
-
-                        <span
-                            className="
-                                text-xs
-                                font-medium
-                                text-blue-300
-
-                                sm:text-sm
-                            "
-                        >
-                            AI Interview Platform
-                        </span>
-
-                    </div>
+                 
 
 
                     {/* Greeting */}
@@ -127,9 +94,7 @@ function WelcomeCard({ user, summary }) {
 
                         <span
                             className="
-                                bg-gradient-to-r
-                                from-blue-400
-                                to-violet-400
+                                bg-violet-400
                                 bg-clip-text
                                 text-transparent
                             "
@@ -297,7 +262,7 @@ function WelcomeCard({ user, summary }) {
                                 text-blue-400
                             "
                         >
-                            Keep it going 🚀
+                            Keep it going
                         </p>
 
                     </div>

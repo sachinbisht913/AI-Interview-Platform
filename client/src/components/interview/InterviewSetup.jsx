@@ -43,7 +43,7 @@ function InterviewSetup() {
                         sm:text-4xl
                     "
                 >
-                    AI Mock Interview
+                     Mock Interview
                 </h1>
 
                 <p

@@ -95,7 +95,7 @@ function Resume() {
                         lg:text-5xl
                     "
                 >
-                    AI Resume Analyzer
+                 Resume Analyzer
                 </h1>
 
 

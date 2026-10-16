@@ -72,10 +72,8 @@ function StartInterviewButton({
                 justify-center
                 gap-3
                 rounded-2xl
-                bg-gradient-to-r
-                from-blue-600
-                via-purple-600
-                to-pink-600
+                bg-blue-500
+               
                 px-5
                 py-4
                 text-base
